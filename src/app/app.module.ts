@@ -12,7 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-// import { CategoriesComponent } from './pages/categories/categories.component';
+import { OrderByPipe } from './order-by.pipe';
+
+
 
 
 @NgModule({
@@ -23,13 +25,16 @@ import { ComponentsModule } from './components/components.module';
     ComponentsModule,
     NgbModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    // CategoriesComponent
+    OrderByPipe,
+ 
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
