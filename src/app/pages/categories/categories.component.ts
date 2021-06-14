@@ -11,14 +11,16 @@ categoryName ='Angular ' + VERSION.major;
   
 
   category = [
-    {categoryName:'Vlrkjdhjhjebdkljv'},
-    {categoryName:'Ajkjnvjfnv'},
-    {categoryName: 'djdhjkdhhdjkd'},
-    {categoryName: 'djnjdnjdn'},
-    {categoryName:'Vlrkjdhjhjebdkljv'},
-    {categoryName:'Ajkjnvjfnv'},
-    {categoryName: 'djdhjkdhhdjkd'},
-    {categoryName: 'djnjdnjdn'}
+    {categoryName:'Hot Spices'},
+    {categoryName:'Mild Spices'},
+    {categoryName: 'Aromatic spices'},
+    {categoryName: 'Herbs'},
+    {categoryName: 'Aromatic spices'},
+    {categoryName: 'Herbs2'},
+    {categoryName: 'Herbs3'},
+    {categoryName: 'Herbs'},
+    
+   
   ];
 
   constructor() { }

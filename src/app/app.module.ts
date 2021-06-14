@@ -12,7 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { OrderByPipe } from './order-by.pipe';
+
 
 
 
@@ -32,7 +32,7 @@ import { OrderByPipe } from './order-by.pipe';
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
-    OrderByPipe,
+
  
     
   ],
