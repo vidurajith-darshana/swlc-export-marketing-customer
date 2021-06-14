@@ -1,0 +1,32 @@
+.header-body{
+    margin-top: 8%;
+}
+.card-columns {
+    column-count: 3;
+}
+.card{
+    text-align: center;
+}
+.card:hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.product-img{
+    width: 60%;
+    margin-left: 17%;
+}
+.products-pagination{
+    padding-top: 8%;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .card-columns{
+        column-count: 2;
+    }
+     }
+     @media screen and (max-width: 780px) {
+       .card-columns{
+           column-count: 1;
+       }
+    }

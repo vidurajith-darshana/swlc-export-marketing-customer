@@ -12,6 +12,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { ProductsComponent } from './pages/products/products.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -26,12 +28,15 @@ import { ComponentsModule } from './components/components.module';
     NgbModule,
     RouterModule,
     AppRoutingModule,
+    NgxPaginationModule
 
   ],
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
+    ProductsComponent,
+    
 
  
     
