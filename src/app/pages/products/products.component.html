@@ -1,51 +1,56 @@
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
-      <div class="header-body">
-           </div>
-          </div>
-          </div>
-          <div class="container-fluid mt--7">
-            <div class="row">
-                <div class="col-2"></div>
-              <div class="col-xl-8 mb-5 mb-xl-0">
-                <div class="card-columns">
-                    <div  *ngFor="let products of product | paginate: config" class="{{products.class}} card">
-                    <div class="product-img"><img src={{products.productThumbnail}} class="card-img-top" alt="products images "></div>
-                      <div class="card-body">
+        <div class="header-body">
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-xl-8 mb-5 mb-xl-0">
+            <div class="card-columns">
+                <div *ngFor="let products of product | paginate: config" class="{{products.class}} card">
+                    <div class="product-img"><img src={{products.productThumbnail}} class="card-img-top"
+                                                  alt="products images "></div>
+                    <div class="card-body">
                         <h2 class="card-title">{{products.productName}}</h2>
                         <h5 class="product-code">{{products.productCode}}</h5>
                         <h3 class="product-price">{{products.productPrice}}</h3>
-                        <button class="btn btn-outline-danger btn-lg" data-toggle="modal" data-target="#myModal">Add To Cart</button>
-                      </div>
+                        <button class="btn btn-outline-danger btn-lg" data-toggle="modal"
+                                [attr.data-target]="'#myModal'+ products.productCode"
+                        >
+                            Add To Cart
+                        </button>
                     </div>
-                  </div>
-                  <div class="products-pagination">
-                  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
-                  </div>
-                  </div>
-                  </div>
-                  </div>
+                    <div class="modal" id="myModal{{products.productCode}}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-5">{{products.productCode}}{{products.productName}}</div>
+                                        <div class="col-7"> fejnfnjkfn</div>
+                                    </div>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="products-pagination">
+                <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <!-- The Modal -->
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-  
-        <!-- Modal body -->
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-5"></div>
-                <div class="col-7"> fejnfnjkfn</div>
-                </div>
-        </div>
-  
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-  
-      </div>
-    </div>
-  </div>
-                
