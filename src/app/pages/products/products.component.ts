@@ -13,7 +13,7 @@ export class ProductsComponent implements OnInit {
       this.config = {
       itemsPerPage: 5,
       currentPage: 1,
-      totalItems: this.product.count
+      // totalItems: this.product.count
     };
    }
 

@@ -1,0 +1,46 @@
+.header-body{
+    margin-top: 8%;
+}
+
+.table .thead-light th {
+    background-color: transparent;
+    border-color: transparent;
+    color: #fafafa;
+    font-size: medium;
+}
+.table td{
+    height: 150px;
+}
+.table-flush tbody tr:last-child td, .table-flush tbody tr:last-child th {
+    color: #3d3f3f;
+    font-size: medium;
+}
+.avatar img{
+    width: 160%;
+}
+a.bin{
+    color: black;
+}
+a.bin:hover{
+    color: red;
+}
+input, button, select, optgroup, textarea {
+    border-color: seashell;
+}
+.button-set{
+    text-align: end;
+    padding-top: 3%;
+}
+.summary-title{
+    text-align: center;
+    font-weight: bold;
+}
+.summary-card{
+   margin-left: 20%;
+}
+
+@media screen and (max-width: 780px) {
+    .summary-card{
+        margin-left: 10%;
+     }
+ }

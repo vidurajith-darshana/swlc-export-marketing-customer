@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 import { ProductsComponent } from './pages/products/products.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CartComponent } from './pages/cart/cart.component';
 
 
 
@@ -36,6 +37,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AdminLayoutComponent,
     AuthLayoutComponent,
     ProductsComponent,
+    CartComponent,
     
 
  
