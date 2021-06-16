@@ -18,6 +18,24 @@
     padding-top: 8%;
     text-align: center;
 }
+.popup-image{
+    width: 120%;
+}
+.product-Name-popup {
+    font-size: x-large;
+    font-weight: 700;
+    padding-top: 5%;
+    padding-bottom: 10%;
+}
+.product-price-popup{
+    font-size: larger;
+    padding-bottom: 5%;
+}
+.product-qty-popup{
+margin-right: 10%;
+font-size: large;
+font-weight: 600;
+}
 
 
 @media screen and (max-width: 1200px) {
@@ -28,5 +46,11 @@
      @media screen and (max-width: 780px) {
        .card-columns{
            column-count: 1;
+       }
+       .product-Name-popup {
+        font-size: large;
+       }
+       .button-set{
+           display: flex;
        }
     }

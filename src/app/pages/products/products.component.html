@@ -17,8 +17,7 @@
                         <h5 class="product-code">{{products.productCode}}</h5>
                         <h3 class="product-price">{{products.productPrice}}</h3>
                         <button class="btn btn-outline-danger btn-lg" data-toggle="modal"
-                                [attr.data-target]="'#myModal'+ products.productCode"
-                        >
+                                [attr.data-target]="'#myModal'+ products.productCode">
                             Add To Cart
                         </button>
                     </div>
@@ -29,14 +28,21 @@
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-5">{{products.productCode}}{{products.productName}}</div>
-                                        <div class="col-7"> fejnfnjkfn</div>
-                                    </div>
+                                        <div class="col-5"><img class="popup-image" src={{products.productThumbnail}}></div>
+                                        <div class="col-7">
+                                            <div class="product-Name-popup">{{products.productName}}</div>
+                                           <div class="product-price-popup">{{products.productPrice}}</div>
+                                            <div><span class="product-qty-popup">QTY</span><input type="number" value="1" min="0" max="1000"/></div>
+                                        </div>
+                                     </div>
                                 </div>
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <div class="button-set">
+                                        <button type="button" class="btn btn-outline-secondary">Continue Shopping</button>
+                                        <button type="button" class="btn btn-outline-danger">Add To Cart</button>
+                                        </div>
                                 </div>
 
                             </div>
