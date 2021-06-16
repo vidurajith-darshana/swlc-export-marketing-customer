@@ -11,14 +11,14 @@ categoryName ='Angular ' + VERSION.major;
   
 
   category = [
-    {categoryName:'Hot Spices'},
-    {categoryName:'Mild Spices'},
-    {categoryName: 'Aromatic spices'},
-    {categoryName: 'Herbs'},
-    {categoryName: 'Aromatic spices'},
-    {categoryName: 'Herbs2'},
-    {categoryName: 'Herbs3'},
-    {categoryName: 'Herbs'},
+    {categoryName:'Hot Spices',categoryId:'1'},
+    {categoryName:'Mild Spices',categoryId:'2'},
+    {categoryName: 'Aromatic spices',categoryId:'3'},
+    {categoryName: 'Herbs',categoryId:'4'},
+    {categoryName: 'Aromatic spices',categoryId:'5'},
+    {categoryName: 'Herbs2',categoryId:'6'},
+    {categoryName: 'Herbs3',categoryId:'7'},
+    {categoryName: 'Herbs',categoryId:'8'},
     
    
   ];
