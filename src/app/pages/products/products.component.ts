@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  
+    orderby: string;
 
-  constructor() {
+    constructor(private route: ActivatedRoute) {
 
       this.config = {
       itemsPerPage: 5,
@@ -37,5 +37,12 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+      this.route.queryParams
+          .subscribe(params => {
+                  console.log(params); // { orderby: "price" }
+                  this.orderby = params.id;
+                  console.log(this.orderby); // price
+              }
+          );
      }
     }
