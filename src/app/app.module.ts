@@ -15,6 +15,7 @@ import { ComponentsModule } from './components/components.module';
 import { ProductsComponent } from './pages/products/products.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartComponent } from './pages/cart/cart.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 
 
 
@@ -38,6 +39,7 @@ import { CartComponent } from './pages/cart/cart.component';
     AuthLayoutComponent,
     ProductsComponent,
     CartComponent,
+    CheckoutComponent,
     
 
  
