@@ -1,4 +1,4 @@
-<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+<nav class="navbar navbar-top navbar-expand-md navbar-dark mobile-padding" id="navbar-main">
     <div class="container-fluid">
         <!-- Brand -->
         <!--    <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" routerLinkActive="active" [routerLink]="['/']">{{getTitle()}}</a>-->
@@ -19,44 +19,25 @@
         <!--      </div>-->
         <!--    </form>-->
         <!-- User -->
-        <ul class="navbar-nav align-items-center d-none d-md-flex">
+        <ul style="display: flex !important;" class="navbar-nav align-items-center d-md-flex show-in-mobile">
             <li class="nav-item" ngbDropdown placement="bottom-right">
-                <a class="nav-link pr-0" role="button" ngbDropdownToggle>
                     <div class="media align-items-center color-black">
-            <span class="avatar avatar-sm rounded-circle">
-              <img class="account-image-thumb" alt="Image placeholder" src="assets/img/theme/team-4-800x800.jpg">
-            </span>
-                        <div class="media-body ml-2 d-none d-lg-block">
-                            <span class="mb-0 text-sm  font-weight-bold color-white">Jessica Jones</span>
+                        <div class="media-body ml-2 d-lg-block">
+                            <a  routerLinkActive="active" [routerLink]="['/cart']" class="mb-0 text-sm  font-weight-bold color-white">
+                                <i class="ni ni-cart bigger-icon"></i>
+                            </a>
+                        </div>
+                        <div class="media-body ml-2 d-lg-block">
+                            <a  routerLinkActive="active" [routerLink]="['/login']" class="mb-0 text-sm  font-weight-bold color-white">
+                                <i class="ni ni-single-02 bigger-icon"></i>
+<!--                                <span>Login</span>-->
+                            </a>
+<!--                            <a  routerLinkActive="active" [routerLink]="['/user-profile']" class="mb-0 text-sm  font-weight-bold color-white">-->
+<!--                                <i class="ni ni-single-02 bigger-icon"></i>-->
+<!--&lt;!&ndash;                                <span>Login</span>&ndash;&gt;-->
+<!--                            </a>-->
                         </div>
                     </div>
-                </a>
-                <div class="dropdown-menu-arrow dropdown-menu-right" ngbDropdownMenu>
-                    <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Welcome!</h6>
-                    </div>
-                    <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-                        <i class="ni ni-single-02"></i>
-                        <span>My profile</span>
-                    </a>
-                    <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-                        <i class="ni ni-settings-gear-65"></i>
-                        <span>Settings</span>
-                    </a>
-                    <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-                        <i class="ni ni-calendar-grid-58"></i>
-                        <span>Activity</span>
-                    </a>
-                    <a routerLinkActive="active" [routerLink]="['/user-profile']" class="dropdown-item">
-                        <i class="ni ni-support-16"></i>
-                        <span>Support</span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a href="#!" class="dropdown-item">
-                        <i class="ni ni-user-run"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
             </li>
         </ul>
     </div>
