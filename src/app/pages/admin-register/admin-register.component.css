@@ -1,0 +1,41 @@
+.note
+{
+    text-align: center;
+    height: 40px;
+    background: -webkit-linear-gradient(left, #f56037, #f5385a);
+    color: #fff;
+    font-size:18px;
+    line-height: 80px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.form-content
+{
+    padding: 5%;
+    border: 1px solid #ced4da;
+    margin-bottom: 2%;
+}
+.form-control{
+    /* border-radius: 5px 5px 5px 5px; */
+    background-color: #f6f5f5;
+}
+.btnSubmit
+{
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #f55e38;
+    color: #fff;
+}
+
+.btnSubmit{
+    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+
+}
+
+
+

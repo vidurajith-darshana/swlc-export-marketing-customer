@@ -16,6 +16,10 @@ import { ProductsComponent } from './pages/products/products.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { CustomerLoginComponent } from './pages/customer-login/customer-login.component';
+import { RegisterCustomerComponent } from './pages/register-customer/register-customer.component';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
+import { AdminRegisterComponent } from './pages/admin-register/admin-register.component';
 
 
 
@@ -40,6 +44,10 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     ProductsComponent,
     CartComponent,
     CheckoutComponent,
+    CustomerLoginComponent,
+    RegisterCustomerComponent,
+    AdminLoginComponent,
+    AdminRegisterComponent,
     
 
  
