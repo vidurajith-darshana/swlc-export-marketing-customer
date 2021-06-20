@@ -1,0 +1,67 @@
+
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+    <div class="container-fluid">
+        <div class="header-body">
+            <h1 class="header-title">Feedbacks</h1>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0 cart-page-card main-tf-background">
+                <form class="margin-top-30">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="ng-autocomplete tf-background-autocompleate">
+                                    <label>Enter Product Name</label>
+                                    <ng-autocomplete
+                                            [data]="data"
+                                            [searchKeyword]="keyword"
+                                            (selected)='selectEvent($event)'
+                                            (inputChanged)='onChangeSearch($event)'
+                                            (inputFocused)='onFocused($event)'
+                                            [itemTemplate]="itemTemplate"
+                                            [notFoundTemplate]="notFoundTemplate">
+                                    </ng-autocomplete>
+
+                                    <ng-template #itemTemplate let-item>
+                                        <a [innerHTML]="item.name"></a>
+                                    </ng-template>
+
+                                    <ng-template #notFoundTemplate let-notFound>
+                                        <div [innerHTML]="notFound"></div>
+                                    </ng-template>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="e3xampleFormControlInput13">Name</label>
+                                <input type="text" placeholder="Regular" id="e3xampleFormControlInput13" class="form-control tf-background" >
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="e3xampleFormControlInput1">Email</label>
+                                <input type="email" class="form-control tf-background" id="e3xampleFormControlInput1" placeholder="name@example.com">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea12">Description</label>
+                                <textarea class="form-control tf-background" id="exampleFormControlTextarea12" rows="3" placeholder="Write a Description here ..."></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+
+
+
