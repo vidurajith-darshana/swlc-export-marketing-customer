@@ -9,6 +9,10 @@ import { CategoriesComponent } from 'src/app/pages/categories/categories.compone
 import { ProductsComponent } from 'src/app/pages/products/products.component';
 import { CartComponent } from 'src/app/pages/cart/cart.component';
 import { CheckoutComponent } from 'src/app/pages/checkout/checkout.component';
+import { CustomerLoginComponent } from 'src/app/pages/customer-login/customer-login.component';
+import { RegisterCustomerComponent } from 'src/app/pages/register-customer/register-customer.component';
+import { AdminLoginComponent } from 'src/app/pages/admin-login/admin-login.component';
+import { AdminRegisterComponent } from 'src/app/pages/admin-register/admin-register.component';
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -19,5 +23,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'categories',       component:CategoriesComponent},
     { path: 'products',         component:ProductsComponent },
     {path: 'cart',              component:CartComponent},
-    {path: 'checkout',         component:CheckoutComponent}
+    {path: 'checkout',         component:CheckoutComponent},
+    {path: 'customer_Login', component:CustomerLoginComponent},
+    {path: 'reg-Customer', component:RegisterCustomerComponent},
+    {path: 'admin_Login', component:AdminLoginComponent},
+    {path: 'reg_Admin', component:AdminRegisterComponent}
 ];

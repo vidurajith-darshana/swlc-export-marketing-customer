@@ -7,3 +7,17 @@
 .account-image-thumb {
   border: 2px solid white;
 }
+.bigger-icon {
+  font-size: 25px;
+  margin-left: 20px;
+}
+.show-in-mobile {
+  display: block !important;
+}
+
+@media screen and (max-width: 768px) {
+  .mobile-padding {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
+}
