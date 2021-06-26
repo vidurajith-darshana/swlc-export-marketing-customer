@@ -1,4 +1,6 @@
 import { Component, OnInit, VERSION } from '@angular/core';
+import {Category} from "../model/category";
+import {CategoryService} from "../service/category.service";
 
 @Component({
   selector: 'app-categories',
@@ -8,20 +10,8 @@ import { Component, OnInit, VERSION } from '@angular/core';
 export class CategoriesComponent implements OnInit {
 
 categoryName ='Angular ' + VERSION.major;
-  
 
-  category = [
-    {categoryName:'Hot Spices',categoryId:'1'},
-    {categoryName:'Mild Spices',categoryId:'2'},
-    {categoryName: 'Aromatic spices',categoryId:'3'},
-    {categoryName: 'Herbs',categoryId:'4'},
-    {categoryName: 'Aromatic spices',categoryId:'5'},
-    {categoryName: 'Herbs2',categoryId:'6'},
-    {categoryName: 'Herbs3',categoryId:'7'},
-    {categoryName: 'Herbs',categoryId:'8'},
-    
-   
-  ];
+  private categoryList : Category[];
   
  product = [
   {productThumbnail:'https://thumbs.nosto.com/quick/magento-f5b2bba1/8/1383/e7789469178cc18cf93ad058141fbce6adcdd7a6093ea9f12fda5c52c990b9b2a/A',productName:'Cumin Powder',productCode:1454665,productPrice:'$ 9.56'},
@@ -34,9 +24,19 @@ categoryName ='Angular ' + VERSION.major;
   {productThumbnail:'https://thumbs.nosto.com/quick/magento-f5b2bba1/8/1383/e7789469178cc18cf93ad058141fbce6adcdd7a6093ea9f12fda5c52c990b9b2a/A',productName:'Seasoning Hurbs',productCode:845455,productPrice:'$ 14.56'}
 ]
 
-  constructor() { };
+  constructor(private categoryService : CategoryService) { };
  
   ngOnInit(): void {
+      this.getAllCategoryList();
+  }
+
+  private getAllCategoryList(){
+      this.categoryService.getAllCategory().subscribe(
+          (data: Object[]) => {
+              this.categoryList = data['body'].content;
+          },
+          error => {
+          });
   }
 
 }

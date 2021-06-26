@@ -29,11 +29,11 @@
     <div class="header-body">
       <h1 class="header-title">Categories</h1>
      <div class="card-columns col-12">
-            <a  *ngFor=" let categories of category  " class="{{categories.class}} card card-stats " href="/products?id={{categories.categoryId}}">
+            <a  *ngFor=" let categories of categoryList " class="card card-stats " href="/products?id={{categories.id}}">
               <div class="card-body">
                 <div class="row">
                   <div class="col">
-                  <span class="h2 font-weight-bold mb-0">{{categories.categoryName}}</span>
+                  <span class="h2 font-weight-bold mb-0">{{categories.name}}</span>
                   </div>
                   </div>
                 </div>
