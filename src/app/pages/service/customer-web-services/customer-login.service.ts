@@ -11,11 +11,6 @@ export class CustomerLoginService {
   constructor(private httpClient : HttpClient) { }
 
   public customerLogin(userName,userPassword){
-    let loginDetails = {
-      username : userName,
-      password : userPassword,
-      grant_type : "password"
-    }
     let params = new URLSearchParams();
     params.append('username',userName);
     params.append('password', userPassword);
