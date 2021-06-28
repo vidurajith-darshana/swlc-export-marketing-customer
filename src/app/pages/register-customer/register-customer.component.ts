@@ -19,6 +19,7 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
   private _createCustomer(){
+    this.customerDetails.role = "ROLE_CUSTOMER";
     this.userService.createUser(this.customerDetails).subscribe((res) => {
       console.log(res);
     });
