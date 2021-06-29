@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../service/common-services/user.service";
+import {User} from "../model/user";
 
 @Component({
   selector: 'app-register-customer',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterCustomerComponent implements OnInit {
 
-  constructor() { }
+  private customerDetails : User = new User();
+
+  constructor(
+      private userService : UserService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  private _createCustomer(){
+    this.customerDetails.role = "ROLE_CUSTOMER";
+    this.userService.createUser(this.customerDetails).subscribe((res) => {
+      console.log(res);
+    });
   }
 
 }

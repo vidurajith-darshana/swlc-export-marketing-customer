@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {Product} from "../model/product";
+import {ProductService} from "../service/customer-web-services/product.service";
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -8,7 +10,12 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductsComponent implements OnInit {
     orderby: string;
 
-    constructor(private route: ActivatedRoute) {
+    private productList : Product[];
+
+    constructor(
+        private route: ActivatedRoute,
+        private productService : ProductService
+    ) {
 
       this.config = {
       itemsPerPage: 5,
@@ -45,4 +52,8 @@ export class ProductsComponent implements OnInit {
               }
           );
      }
-    }
+
+  private getProductsByCategoryId(id){
+
+  }
+}
