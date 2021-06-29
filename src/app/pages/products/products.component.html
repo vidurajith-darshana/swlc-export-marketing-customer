@@ -10,8 +10,7 @@
         <div class="col-xl-8 mb-5 mb-xl-0">
             <div class="card-columns">
                 <div *ngFor="let products of product | paginate: config" class="{{products.class}} card">
-                    <div class="product-img"><img src={{products.productThumbnail}} class="card-img-top"
-                                                  alt="products images "></div>
+                    <div class="product-img"><img src={{products.productThumbnail}} class="card-img-top"alt="products images "></div>
                     <div class="card-body">
                         <h2 class="card-title">{{products.productName}}</h2>
                         <h5 class="product-code">{{products.productCode}}</h5>
@@ -23,6 +22,7 @@
                     </div>
                     <div class="modal" id="myModal{{products.productCode}}">
                         <div class="modal-dialog">
+                            
                             <div class="modal-content">
 
                                 <!-- Modal body -->
@@ -59,4 +59,4 @@
 </div>
 
 
-<!-- The Modal -->
+
