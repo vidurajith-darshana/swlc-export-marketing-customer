@@ -14,4 +14,21 @@ export class UserService {
     let url = `${this.APP_URL+'api/v1/user/customer/create'}`;
     return this.httpClient.post(url,user);
   }
+
+  public _forgetPassword(userEmail){
+    let url = `${this.APP_URL+'api/v1/user/customer/forget-password/'+userEmail}`;
+    return this.httpClient.post(url,'');
+  }
+
+  public _resetPassword(userEmail,verifyCode,password){
+
+    let data = {
+      email : userEmail,
+      verifyCode : verifyCode,
+      password : password
+    }
+
+    let url = `${this.APP_URL+'api/v1/user/customer/reset-password'}`;
+    return this.httpClient.post(url,data);
+  }
 }
