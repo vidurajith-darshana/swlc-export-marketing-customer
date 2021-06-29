@@ -12,7 +12,7 @@ export class ProductService {
     }
 
     public _getProductList(categoryId, pageNo) {
-        let url = `${this.APP_URL + 'api/v1/user/product/all/category?category=' + categoryId + '&page=' + pageNo + '&size=10'}`;
+        let url = `${this.APP_URL + 'api/v1/user/product/all/category?category=' + categoryId + '&page=' + pageNo + '&size=5'}`;
         return this.httpClient.get(url);
     }
 }
