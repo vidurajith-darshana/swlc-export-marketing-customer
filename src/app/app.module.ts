@@ -22,7 +22,8 @@ import {AdminLoginComponent} from './pages/admin-login/admin-login.component';
 import {AdminRegisterComponent} from './pages/admin-register/admin-register.component';
 import {FeedbackComponent} from './pages/feedback/feedback.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
-
+import { AlertModule } from './pages/_alert';
+import { MultiAlertsComponent } from './pages/multi-alerts';
 
 @NgModule({
     imports: [
@@ -33,6 +34,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
         NgbModule,
         RouterModule,
         AppRoutingModule,
+        AlertModule,
         NgxPaginationModule,
         AutocompleteLibModule
 
@@ -48,6 +50,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
         RegisterCustomerComponent,
         AdminLoginComponent,
         AdminRegisterComponent,
+        MultiAlertsComponent,
         FeedbackComponent,
     ],
     providers: [],
