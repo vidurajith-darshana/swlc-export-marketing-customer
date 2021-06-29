@@ -48,12 +48,17 @@ export class ProductsComponent implements OnInit {
           .subscribe(params => {
                   console.log(params); // { orderby: "price" }
                   this.orderby = params.id;
+                  this.getProductsByCategoryId(params.id);
                   console.log(this.orderby); // price
               }
           );
      }
 
   private getProductsByCategoryId(id){
+     this.productService._getProductList(id,0).subscribe((data : Object[]) => {
+         console.log(data);
+     },error => {
 
+     });
   }
 }

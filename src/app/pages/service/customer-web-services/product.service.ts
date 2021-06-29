@@ -10,8 +10,8 @@ export class ProductService {
 
   constructor(private httpClient : HttpClient) { }
 
-  public _getProductList(){
-    let url = `${this.APP_URL+'api/v1/user/product/all?page=0&size=10'}`;
+  public _getProductList(categoryId,pageNo){
+    let url = `${this.APP_URL+'api/v1/user/product/all/category?category='+ categoryId +'&page='+ pageNo +'&size=10'}`;
     return this.httpClient.get(url);
   }
 }

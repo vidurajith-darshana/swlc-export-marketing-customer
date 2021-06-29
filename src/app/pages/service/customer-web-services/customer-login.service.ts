@@ -31,6 +31,7 @@ export class CustomerLoginService {
 
   public saveToken(data){
       window.sessionStorage.setItem('token', JSON.stringify(data));
+      localStorage.setItem('','');
       console.log(window.sessionStorage.getItem('token'));
   }
 
