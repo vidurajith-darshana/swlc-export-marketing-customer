@@ -1,82 +1,96 @@
-
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
-      <div class="header-body">
-           </div>
-          </div>
-          </div>
-          <div class="container-fluid mt--7">
+        <div class="header-body">
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--7">
+    <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0 cart-page-card">
             <div class="row">
-                <div class="col-xl-12 mb-5 mb-xl-0 cart-page-card">
-                    <div class="row">
-                        <div class="col-lg-8 col-sm-12">
-                        <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
-                                  <thead class="thead-light">
-                                    <tr>
-                                      <th scope="col">Item</th>
-                                      <th scope="col">Price</th>
-                                      <th scope="col">Qty</th>
-                                      <th scope="col">Subtotal</th>
-                                      <th scope="col"></th>
-                                    </tr>
-                                  </thead>
-                                  <tbody *ngFor="let products of product">
-                                    <tr>
-                                      <th scope="row">
-                                        <div class="media align-items-center">
-                                          <a class="avatar rounded-circle mr-3">
+                <div class="col-lg-8 col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Item</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Subtotal</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody *ngFor="let products of product">
+                            <tr>
+                                <th scope="row">
+                                    <div class="media align-items-center">
+                                        <a class="avatar rounded-circle mr-3">
                                             <img alt="Image placeholder cart-img" src={{products.productImg}}>
-                                          </a>
-                                          <div class="media-body">
+                                        </a>
+                                        <div class="media-body">
                                             <span class="mb-0 text-sm">{{products.productName}}</span>
-                                          </div>
                                         </div>
-                                      </th>
-                                      <td>
-                                       {{products.productPrice}}
-                                      </td>
-                                      <td>
-                                        <input type="number" value="1" min="0" max="1000"/>
-                                      </td>
-                                      <td>
-                                        {{products.Subtotal}}
-                                     </td>
-                                      <td>
-                                        <a href="" class="bin"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    </div>
+                                </th>
+                                <td>
+                                    {{products.productPrice}}
+                                </td>
+                                <td>
+                                    <input type="number" value="1" min="0" max="1000"/>
+                                </td>
+                                <td>
+                                    {{products.Subtotal}}
+                                </td>
+                                <td>
+                                    <a href="" class="bin">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                             fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-                                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-                                          </svg></a>
-                                      </td>
-                                       </tr>
-                                </tbody>
-                                </table>
-                              </div>
-                              <div class="button-set">
-                              <button type="button" class="btn btn-outline-secondary">Continue Shopping</button>
-                              <button type="button" class="btn btn-outline-danger">Clear Cart</button>
-                              </div>
-                            </div>
-                        <div class="col-lg-4 col-sm-12">
+                                            <path fill-rule="evenodd"
+                                                  d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                        </svg>
+                                    </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="button-set">
+                        <button type="button" class="btn btn-outline-secondary">Continue Shopping</button>
+                        <button type="button" class="btn btn-outline-danger">Clear Cart</button>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-12">
 
-                            <div class="card summary-card" style="width: 18rem;">
-                                <div class="card-header summary-title">
-                                  Summary
-                                </div>
-                                <ul class="list-group list-group-flush">
-                                  <li class="list-group-item">Sub Total<input type="text" class="form-control form-control-alternative" disabled=""></li>
-                                  <li class="list-group-item">Tax <input type="text" class="form-control form-control-alternative" disabled=""></li>
-                                  <li class="list-group-item">Order Total<input type="text"  class="form-control form-control-alternative" disabled=""></li>
-                                  <li class="list-group-item">Apply Discount Code<input type="text" placeholder="Apply your discount code" class="form-control form-control-alternative"></li>
-                                  <li class="list-group-item"><button type="button" class="btn btn-danger btn-lg btn-block">Checkout</button></li>
-                                </ul>
-                              </div>
-
+                    <div class="card summary-card" style="width: 18rem;">
+                        <div class="card-header summary-title">
+                            Summary
                         </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Sub Total<input type="text"
+                                                                        class="form-control form-control-alternative"
+                                                                        disabled=""></li>
+                            <li class="list-group-item">Tax <input type="text"
+                                                                   class="form-control form-control-alternative"
+                                                                   disabled=""></li>
+                            <li class="list-group-item">Order Total<input type="text"
+                                                                          class="form-control form-control-alternative"
+                                                                          disabled=""></li>
+                            <li class="list-group-item">Apply Discount Code<input type="text"
+                                                                                  placeholder="Apply your discount code"
+                                                                                  class="form-control form-control-alternative">
+                            </li>
+                            <li class="list-group-item">
+                                <button type="button" class="btn btn-danger btn-lg btn-block">Checkout</button>
+                            </li>
+                        </ul>
                     </div>
-                    </div>
-                    </div>
-                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

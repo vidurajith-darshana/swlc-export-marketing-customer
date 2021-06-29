@@ -10,7 +10,8 @@
         <div class="col-xl-8 mb-5 mb-xl-0">
             <div class="card-columns">
                 <div *ngFor="let products of product | paginate: config" class="{{products.class}} card">
-                    <div class="product-img"><img src={{products.productThumbnail}} class="card-img-top"alt="products images "></div>
+                    <div class="product-img"><img src={{products.productThumbnail}} class="card-img-top"
+                                                  alt="products images "></div>
                     <div class="card-body">
                         <h2 class="card-title">{{products.productName}}</h2>
                         <h5 class="product-code">{{products.productCode}}</h5>
@@ -22,27 +23,31 @@
                     </div>
                     <div class="modal" id="myModal{{products.productCode}}">
                         <div class="modal-dialog">
-                            
+
                             <div class="modal-content">
 
                                 <!-- Modal body -->
                                 <div class="modal-body">
                                     <div class="row">
-                                        <div class="col-5"><img class="popup-image" src={{products.productThumbnail}}></div>
+                                        <div class="col-5"><img class="popup-image" src={{products.productThumbnail}}>
+                                        </div>
                                         <div class="col-7">
                                             <div class="product-Name-popup">{{products.productName}}</div>
-                                           <div class="product-price-popup">{{products.productPrice}}</div>
-                                            <div><span class="product-qty-popup">QTY</span><input type="number" value="1" min="0" max="1000"/></div>
+                                            <div class="product-price-popup">{{products.productPrice}}</div>
+                                            <div><span class="product-qty-popup">QTY</span><input type="number"
+                                                                                                  value="1" min="0"
+                                                                                                  max="1000"/></div>
                                         </div>
-                                     </div>
+                                    </div>
                                 </div>
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
                                     <div class="button-set">
-                                        <button type="button" class="btn btn-outline-secondary">Continue Shopping</button>
+                                        <button type="button" class="btn btn-outline-secondary">Continue Shopping
+                                        </button>
                                         <button type="button" class="btn btn-outline-danger">Add To Cart</button>
-                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
