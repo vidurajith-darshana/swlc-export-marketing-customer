@@ -1,6 +1,6 @@
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
-
+        <alert></alert>
         <div class="wrapper fadeInDown">
             <div id="formContent">
                 <!-- Tabs Titles -->
@@ -19,7 +19,7 @@
                 <form>
                     <input type="text" [(ngModel)]="userName" id="login" class="fadeIn second" name="user_name"
                            placeholder="Username">
-                    <input type="text" [(ngModel)]="userPassword" id="password" class="fadeIn third"
+                    <input type="password" [(ngModel)]="userPassword" id="password" class="fadeIn third"
                            name="user_password" placeholder="Password">
                     <input type="button" (click)="_customerLogin()" class="fadeIn fourth" value="Log In">
                 </form>
