@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {AlertService} from '../../_alert';
 
 @Injectable({
     providedIn: 'root'
@@ -7,8 +8,15 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class CustomerLoginService {
 
     private APP_URL = 'http://103.125.216.56:8012/';
+    private options = {
+        autoClose: true,
+        keepAfterRouteChange: false
+    };
 
-    constructor(private httpClient: HttpClient) {
+    constructor(
+        protected alertService: AlertService,
+        private httpClient: HttpClient
+    ) {
     }
 
     public customerLogin(userName, userPassword) {
@@ -31,7 +39,7 @@ export class CustomerLoginService {
                 this._getUserDetails(userName);
             }
         ,
-            err => alert('Invalid Credentials'));
+            err => this.alertService.warn('Invalid Credentials', this.options));
 
 
     }
