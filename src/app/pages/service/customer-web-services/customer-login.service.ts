@@ -26,23 +26,41 @@ export class CustomerLoginService {
 
         let url = `${this.APP_URL + 'api/v1/authorize'}`;
 
-        this.httpClient.post(url, params.toString(), {headers: headers}).subscribe(data => this.saveToken(data),
+        this.httpClient.post(url, params.toString(), {headers: headers}).subscribe((data) => {
+                this.saveToken(data);
+                this._getUserDetails(userName);
+            }
+        ,
             err => alert('Invalid Credentials'));
+
+
     }
 
     public saveToken(data) {
-        window.sessionStorage.setItem('token', JSON.stringify(data));
-        localStorage.setItem('', '');
-        console.log(window.sessionStorage.getItem('token'));
+        // window.sessionStorage.setItem('token', );
+        localStorage.setItem('token', JSON.stringify(data));
+        let itemList = new Array();
+        localStorage.setItem("itemList",JSON.stringify(itemList));
+        console.log(localStorage.getItem('token'));
     }
 
     public checkCredentials() {
-        return window.sessionStorage.getItem('token');
+        return localStorage.getItem('token');
     }
 
     public logout() {
-        window.sessionStorage.removeItem('token');
+        localStorage.removeItem('token');
         window.location.reload();
+    }
+
+    public _getUserDetails(customerEmail){
+        let url = `${this.APP_URL + 'api/v1/user/getDetails/'+customerEmail}`;
+        this.httpClient.get(url).subscribe((data:[]) => {
+            console.log(data['body'].id);
+            localStorage.setItem('loggedUserId',data['body'].id);
+        },error => {
+
+        });
     }
 
 }

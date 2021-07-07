@@ -35,9 +35,8 @@
                                         <div class="col-7">
                                             <div class="product-Name-popup">{{products.name}}</div>
                                             <div class="product-price-popup">{{products.price}}</div>
-                                            <div><span class="product-qty-popup">QTY</span><input type="number"
-                                                                                                  value="1" min="0"
-                                                                                                  max="1000"/></div>
+                                            <div><span class="product-qty-popup">QTY</span>
+                                                <input [(ngModel)]="quantity" type="number" value="1" min="1" max="1000"/></div>
                                         </div>
                                     </div>
                                 </div>
@@ -47,7 +46,7 @@
                                     <div class="button-set">
                                         <button type="button" class="btn btn-outline-secondary">Continue Shopping
                                         </button>
-                                        <button type="button" class="btn btn-outline-danger">Add To Cart</button>
+                                        <button type="button" (click)="_addToCart(products.id,products.name,products.thumbnail,products.price)" class="btn btn-outline-danger">Add To Cart</button>
                                     </div>
                                 </div>
 

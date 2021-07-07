@@ -13,6 +13,9 @@ export class ProductsComponent implements OnInit {
     orderby: string;
 
     private product: Product[];
+    private quantity : number = 0;
+
+    sampleArray : [];
 
     constructor(
         private route: ActivatedRoute,
@@ -109,5 +112,21 @@ export class ProductsComponent implements OnInit {
         }, error => {
 
         });
+    }
+
+    private _addToCart(itemId,itemName,itemImage,itemPrice){
+        let subTotal = itemPrice * this.quantity;
+        let list = JSON.parse(localStorage.getItem('itemList'));
+        localStorage.removeItem('itemList');
+        let item = {
+            itemId : itemId,
+            itemName : itemName,
+            itemImage : itemImage,
+            itemPrice : itemPrice,
+            itemQty : this.quantity,
+            subTotal : subTotal
+        };
+        list.push(item);
+        localStorage.setItem('itemList',JSON.stringify(list));
     }
 }
