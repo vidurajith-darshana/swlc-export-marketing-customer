@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {CartItems} from "../model/cart-items";
 
 @Component({
     selector: 'app-cart',
@@ -9,6 +10,8 @@ export class CartComponent implements OnInit {
 
     constructor() {
     }
+
+    private productList : CartItems[];
 
     product = [
 
@@ -51,6 +54,11 @@ export class CartComponent implements OnInit {
     ];
 
     ngOnInit(): void {
+        this._getAddToCartItems();
+    }
+
+    private _getAddToCartItems(){
+         this.productList = JSON.parse(localStorage.getItem('itemList'));
     }
 
 }

@@ -20,26 +20,26 @@
                                 <th scope="col"></th>
                             </tr>
                             </thead>
-                            <tbody *ngFor="let products of product">
+                            <tbody *ngFor="let products of productList">
                             <tr>
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <a class="avatar rounded-circle mr-3">
-                                            <img alt="Image placeholder cart-img" src={{products.productImg}}>
+                                            <img alt="Image placeholder cart-img" src="{{products.itemImage}}">
                                         </a>
                                         <div class="media-body">
-                                            <span class="mb-0 text-sm">{{products.productName}}</span>
+                                            <span class="mb-0 text-sm">{{products.itemName}}</span>
                                         </div>
                                     </div>
                                 </th>
                                 <td>
-                                    {{products.productPrice}}
+                                    {{products.itemPrice}}
                                 </td>
                                 <td>
-                                    <input type="number" value="1" min="0" max="1000"/>
+                                    <input type="number" [(ngModel)]="products.itemQty" value="1" min="0" max="1000"/>
                                 </td>
                                 <td>
-                                    {{products.Subtotal}}
+                                    {{products.subTotal}}
                                 </td>
                                 <td>
                                     <a href="" class="bin">

@@ -49,7 +49,6 @@ export class CustomerLoginService {
         localStorage.setItem('token', JSON.stringify(data));
         let itemList = new Array();
         localStorage.setItem("itemList",JSON.stringify(itemList));
-        console.log(localStorage.getItem('token'));
     }
 
     public checkCredentials() {
@@ -57,6 +56,7 @@ export class CustomerLoginService {
     }
 
     public logout() {
+        localStorage.removeItem('itemList');
         localStorage.removeItem('token');
         window.location.reload();
     }
