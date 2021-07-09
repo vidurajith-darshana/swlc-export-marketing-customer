@@ -14,6 +14,8 @@ import {RegisterCustomerComponent} from 'src/app/pages/register-customer/registe
 import {AdminLoginComponent} from 'src/app/pages/admin-login/admin-login.component';
 import {AdminRegisterComponent} from 'src/app/pages/admin-register/admin-register.component';
 import {FeedbackComponent} from 'src/app/pages/feedback/feedback.component';
+import { CustomerLoginService } from 'src/app/pages/service/customer-web-services/customer-login.service';
+import { ReviewsComponent } from 'src/app/pages/reviews/reviews.component';
 
 export const AdminLayoutRoutes: Routes = [
     {path: 'dashboard', component: DashboardComponent},
@@ -29,5 +31,6 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'customer_Login', component: CustomerLoginComponent},
     {path: 'reg-Customer', component: RegisterCustomerComponent},
     {path: 'admin_Login', component: AdminLoginComponent},
-    {path: 'reg_Admin', component: AdminRegisterComponent}
+    {path: 'reg_Admin', component: AdminRegisterComponent},
+    {path: 'reviews', component: ReviewsComponent}
 ];
