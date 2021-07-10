@@ -25,6 +25,7 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { AlertModule } from './pages/_alert';
 import { MultiAlertsComponent } from './pages/multi-alerts';
 import { ReviewsComponent } from './pages/reviews/reviews.component';
+import { CustomerComplainsComponent } from './pages/customer-complains/customer-complains.component';
 
 // import { ForgetpasswordComponent } from './pages/forgetpassword/forgetpassword.component';
 
@@ -56,6 +57,7 @@ import { ReviewsComponent } from './pages/reviews/reviews.component';
         MultiAlertsComponent,
         FeedbackComponent,
         ReviewsComponent,
+        CustomerComplainsComponent,
        
         // ForgetpasswordComponent,
     ],
