@@ -12,6 +12,7 @@ export class CartComponent implements OnInit {
     }
 
     private productList : CartItems[];
+    private itemTotalAmount : any;
 
     product = [
 
@@ -59,6 +60,13 @@ export class CartComponent implements OnInit {
 
     private _getAddToCartItems(){
          this.productList = JSON.parse(localStorage.getItem('itemList'));
+         let orderTotal = 0;
+         for (let i in this.productList){
+             let item = this.productList[i];
+             let itemSubTot = item.subTotal;
+             orderTotal += itemSubTot;
+         }
+         this.itemTotalAmount = orderTotal.toFixed(2);
     }
 
 }
