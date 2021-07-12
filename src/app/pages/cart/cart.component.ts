@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CartItems} from "../model/cart-items";
+import {OrderService} from "../service/customer-web-services/order.service";
 
 @Component({
     selector: 'app-cart',
@@ -8,11 +9,15 @@ import {CartItems} from "../model/cart-items";
 })
 export class CartComponent implements OnInit {
 
-    constructor() {
+    constructor(
+        private orderService : OrderService
+    ) {
     }
 
     private productList : CartItems[];
     private itemTotalAmount : any;
+    private orderTotalAmount : any;
+    private message : string;
 
     product = [
 
@@ -67,6 +72,25 @@ export class CartComponent implements OnInit {
              orderTotal += itemSubTot;
          }
          this.itemTotalAmount = orderTotal.toFixed(2);
+         this.orderTotalAmount = orderTotal.toFixed(2);
+    }
+
+    private _removeItemFromCart(itemId){
+        this.productList = JSON.parse(localStorage.getItem('itemList'));
+        localStorage.removeItem('itemList');
+        let item = this.productList.find(name => name.itemId === itemId);
+        if (item !== null){
+            this.productList.splice(this.productList.indexOf(item),1);
+        }
+        localStorage.setItem('itemList',JSON.stringify(this.productList));
+        this._getAddToCartItems();
+    }
+
+    private _saveOrder(){
+        let fkUserId = JSON.parse(localStorage.getItem('loggedUserId'));
+        this.orderService.saveOrder(fkUserId,this.orderTotalAmount,this.message,'PENDING').subscribe((data) =>{
+            console.log(data);
+        });
     }
 
 }
