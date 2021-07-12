@@ -40,6 +40,7 @@ export class CustomerLoginService {
         this.httpClient.post(url, params.toString(), {headers: headers}).subscribe((data) => {
                 this.saveToken(data);
                 this._getUserDetails(userName);
+                this.alertService.success('Login success', this.options);
                 this.router.navigate(['/heroes']);
             }
             ,
