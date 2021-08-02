@@ -40,6 +40,7 @@ export class CustomerLoginService {
         this.httpClient.post(url, params.toString(), {headers: headers}).subscribe((data) => {
                 this.saveToken(data);
                 this._getUserDetails(userName);
+                this.alertService.success('Login success', this.options);
                 this.router.navigate(['/heroes']);
             }
             ,
@@ -72,7 +73,6 @@ export class CustomerLoginService {
     public _getUserDetails(customerEmail) {
         const url = `${this.APP_URL + 'api/v1/user/getDetails/' + customerEmail}`;
         this.httpClient.get(url).subscribe((data: []) => {
-            console.log(data['body'].id);
             localStorage.setItem('loggedUserId', data['body'].id);
         }, error => {
 
