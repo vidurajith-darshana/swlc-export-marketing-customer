@@ -13,7 +13,7 @@ import {AlertService} from '../_alert';
 export class ProductsComponent implements OnInit {
     orderby: string;
     private options = {
-        autoClose: true,
+        autoClose: false,
         keepAfterRouteChange: false
     };
     private product: Product[];
