@@ -8,7 +8,7 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 })
 export class CustomerLoginService {
 
-    private APP_URL = 'http://103.125.216.56:8012/';
+    private APP_URL = 'http://103.125.216.56:8007/';
     private options = {
         autoClose: true,
         keepAfterRouteChange: false
