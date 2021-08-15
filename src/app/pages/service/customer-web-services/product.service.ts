@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ProductService {
 
-    private APP_URL = 'http://103.125.216.56:8007/';
+    private APP_URL = 'http://18.141.138.171:8012/';
 
     constructor(private httpClient: HttpClient) {
     }
