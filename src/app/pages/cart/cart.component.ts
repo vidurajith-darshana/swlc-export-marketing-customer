@@ -89,8 +89,10 @@ export class CartComponent implements OnInit {
     private _saveOrder(){
         let fkUserId = JSON.parse(localStorage.getItem('loggedUserId'));
         this.orderService.saveOrder(fkUserId,this.orderTotalAmount,this.message,'PENDING').subscribe((data) =>{
-            console.log(data);
-        });
+            const itemList = new Array();
+            localStorage.setItem('itemList', JSON.stringify(itemList));
+            this._getAddToCartItems();
+        },error => {});
     }
 
 }

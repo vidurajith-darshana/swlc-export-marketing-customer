@@ -49,8 +49,6 @@ export class CustomerLoginService {
                 // this.router.navigate(['/heroes'])
             )
         );
-
-
     }
 
     public saveToken(data) {
