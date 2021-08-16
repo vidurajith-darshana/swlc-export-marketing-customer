@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CartItems} from "../model/cart-items";
 import {OrderService} from "../service/customer-web-services/order.service";
+import {AlertService} from "../_alert";
 
 @Component({
     selector: 'app-cart',
@@ -9,8 +10,14 @@ import {OrderService} from "../service/customer-web-services/order.service";
 })
 export class CartComponent implements OnInit {
 
+    private options = {
+        autoClose: false,
+        keepAfterRouteChange: false
+    };
+
     constructor(
-        private orderService : OrderService
+        private orderService : OrderService,
+        protected alertService: AlertService,
     ) {
     }
 
@@ -89,10 +96,17 @@ export class CartComponent implements OnInit {
     private _saveOrder(){
         let fkUserId = JSON.parse(localStorage.getItem('loggedUserId'));
         this.orderService.saveOrder(fkUserId,this.orderTotalAmount,this.message,'PENDING').subscribe((data) =>{
-            const itemList = new Array();
-            localStorage.setItem('itemList', JSON.stringify(itemList));
-            this._getAddToCartItems();
-        },error => {});
+            if (data['success']){
+                this.alertService.success('Order Save success',this.options);
+                const itemList = new Array();
+                localStorage.setItem('itemList', JSON.stringify(itemList));
+                this._getAddToCartItems();
+            }else {
+                this.alertService.error(data['message'],this.options);
+            }
+        },error => {
+            this.alertService.error('Order save failed!',this.options)
+        });
     }
 
 }
