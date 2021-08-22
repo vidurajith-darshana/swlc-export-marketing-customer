@@ -20,29 +20,29 @@
                                 <th scope="col"></th>
                             </tr>
                             </thead>
-                            <tbody *ngFor="let products of product">
+                            <tbody *ngFor="let products of productList">
                             <tr>
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <a class="avatar rounded-circle mr-3">
-                                            <img alt="Image placeholder cart-img" src={{products.productImg}}>
+                                            <img alt="Image placeholder cart-img" src="{{products.itemImage}}">
                                         </a>
                                         <div class="media-body">
-                                            <span class="mb-0 text-sm">{{products.productName}}</span>
+                                            <span class="mb-0 text-sm">{{products.itemName}}</span>
                                         </div>
                                     </div>
                                 </th>
                                 <td>
-                                    {{products.productPrice}}
+                                    {{products.itemPrice}}
                                 </td>
                                 <td>
-                                    <input type="number" value="1" min="0" max="1000"/>
+                                    <input type="number" [(ngModel)]="products.itemQty" value="1" min="0" max="1000"/>
                                 </td>
                                 <td>
-                                    {{products.Subtotal}}
+                                    {{products.subTotal}}
                                 </td>
                                 <td>
-                                    <a href="" class="bin">
+                                    <a href="" class="bin" (click)="_removeItemFromCart(products.itemId)">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                              fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -67,21 +67,20 @@
                             Summary
                         </div>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">Sub Total<input type="text"
+                            <li class="list-group-item">Sub Total<input type="text" [(ngModel)]="itemTotalAmount"
                                                                         class="form-control form-control-alternative"
-                                                                        disabled=""></li>
+                                                                        style="text-align: right" disabled=""></li>
                             <li class="list-group-item">Tax <input type="text"
                                                                    class="form-control form-control-alternative"
                                                                    disabled=""></li>
-                            <li class="list-group-item">Order Total<input type="text"
+                         <li class="list-group-item">Order Total<input type="text" [(ngModel)]="orderTotalAmount"
                                                                           class="form-control form-control-alternative"
-                                                                          disabled=""></li>
-                            <li class="list-group-item">Apply Discount Code<input type="text"
-                                                                                  placeholder="Apply your discount code"
-                                                                                  class="form-control form-control-alternative">
+                                                                          style="text-align: right" disabled=""></li>
+                            <li class="list-group-item">Message
+                                <textarea class="form-control" id="textAreaExample1" [(ngModel)]="message" rows="4"></textarea>
                             </li>
                             <li class="list-group-item">
-                                <button type="button" class="btn btn-danger btn-lg btn-block">Checkout</button>
+                                <button type="button" (click)="_saveOrder()" class="btn btn-danger btn-lg btn-block">Checkout</button>
                             </li>
                         </ul>
                     </div>

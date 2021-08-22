@@ -1,0 +1,98 @@
+.tf-background-autocompleate {
+    width: 100%;
+  
+  }
+  
+  .tf-background-autocompleate .ng-autocomplete .autocomplete-container {
+    box-shadow: none !important;
+  }
+  
+  .header-body {
+    margin-top: 8%;
+  }
+  
+  .table .thead-light th {
+    font-size: medium;
+  }
+  
+  .table td {
+    height: 150px;
+  }
+  
+  .table-flush tbody tr:last-child td, .table-flush tbody tr:last-child th {
+    color: #3d3f3f;
+    font-size: medium;
+  }
+  
+  .avatar img {
+    width: 160%;
+  }
+  
+  a.bin {
+    color: black;
+  }
+  
+  a.bin:hover {
+    color: red;
+  }
+  
+  input, button, select, optgroup, textarea {
+    border-color: seashell;
+  }
+  
+  .button-set {
+    text-align: end;
+    padding-top: 3%;
+  }
+  
+  .summary-title {
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .summary-card {
+    margin-left: 20%;
+  }
+  
+  .cart-page-card {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  @media screen and (max-width: 780px) {
+    .summary-card {
+      margin-left: 10%;
+    }
+  }
+  
+  h1.header-title {
+    text-align: center;
+    font-size: xx-large;
+    padding-bottom: 3%;
+    color: white;
+    font-weight: 900;
+  }
+  
+  .margin-top-30 {
+    margin-top: 30px;
+  }
+  
+  .main-tf-background {
+    background: #efefef;
+    margin-bottom: 30px !important;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+  }
+  
+  .tf-background {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 20%), 0 1px 1px 0 rgb(0 0 0 / 14%), 0 2px 1px -1px rgb(0 0 0 / 12%);
+    border-radius: 0;
+  }
+  .radio-inline{
+      margin-bottom: 3%;
+      
+  }
+  
+  
+  

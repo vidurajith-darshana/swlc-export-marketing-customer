@@ -24,6 +24,10 @@ import {FeedbackComponent} from './pages/feedback/feedback.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 import { AlertModule } from './pages/_alert';
 import { MultiAlertsComponent } from './pages/multi-alerts';
+import { ReviewsComponent } from './pages/reviews/reviews.component';
+import { CustomerComplainsComponent } from './pages/customer-complains/customer-complains.component';
+
+// import { ForgetpasswordComponent } from './pages/forgetpassword/forgetpassword.component';
 
 @NgModule({
     imports: [
@@ -52,6 +56,10 @@ import { MultiAlertsComponent } from './pages/multi-alerts';
         AdminRegisterComponent,
         MultiAlertsComponent,
         FeedbackComponent,
+        ReviewsComponent,
+        CustomerComplainsComponent,
+       
+        // ForgetpasswordComponent,
     ],
     providers: [],
     bootstrap: [AppComponent]

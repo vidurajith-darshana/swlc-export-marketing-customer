@@ -3,6 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Product} from '../model/product';
 import {ProductService} from '../service/customer-web-services/product.service';
+import {AlertService} from '../_alert';
 
 @Component({
     selector: 'app-products',
@@ -11,11 +12,18 @@ import {ProductService} from '../service/customer-web-services/product.service';
 })
 export class ProductsComponent implements OnInit {
     orderby: string;
-
+    private options = {
+        autoClose: false,
+        keepAfterRouteChange: false
+    };
     private product: Product[];
+    private quantity : number = 0;
+
+    sampleArray : [];
 
     constructor(
         private route: ActivatedRoute,
+        protected alertService: AlertService,
         private productService: ProductService
     ) {
         this.config = {
@@ -55,5 +63,27 @@ export class ProductsComponent implements OnInit {
         }, error => {
 
         });
+    }
+
+    private _addToCart(itemId,itemName,itemImage,itemPrice){
+        try {
+            let subTotal = itemPrice * this.quantity;
+            let list = JSON.parse(localStorage.getItem('itemList'));
+
+            localStorage.removeItem('itemList');
+            let item = {
+                itemId: itemId,
+                itemName: itemName,
+                itemImage: itemImage,
+                itemPrice: itemPrice,
+                itemQty: this.quantity,
+                subTotal: subTotal
+            };
+            list.push(item);
+            localStorage.setItem('itemList', JSON.stringify(list));
+            this.alertService.success(item.itemName + 'added to cart', this.options);
+        } catch (e) {
+            this.alertService.warn('Something went wrong', this.options)
+        }
     }
 }
