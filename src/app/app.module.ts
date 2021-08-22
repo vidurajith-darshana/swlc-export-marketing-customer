@@ -26,6 +26,9 @@ import { AlertModule } from './pages/_alert';
 import { MultiAlertsComponent } from './pages/multi-alerts';
 import { ReviewsComponent } from './pages/reviews/reviews.component';
 import { CustomerComplainsComponent } from './pages/customer-complains/customer-complains.component';
+import {NgProgressModule} from 'ngx-progressbar';
+import {NgProgressHttpModule} from 'ngx-progressbar/http';
+import {MyOrdersComponent} from './pages/my-orders/my-orders.component';
 
 // import { ForgetpasswordComponent } from './pages/forgetpassword/forgetpassword.component';
 
@@ -40,7 +43,11 @@ import { CustomerComplainsComponent } from './pages/customer-complains/customer-
         AppRoutingModule,
         AlertModule,
         NgxPaginationModule,
-        AutocompleteLibModule
+        AutocompleteLibModule,
+        NgProgressModule.withConfig({
+            color: "black"
+        }),
+        NgProgressHttpModule
 
     ],
     declarations: [
@@ -58,7 +65,7 @@ import { CustomerComplainsComponent } from './pages/customer-complains/customer-
         FeedbackComponent,
         ReviewsComponent,
         CustomerComplainsComponent,
-       
+        MyOrdersComponent
         // ForgetpasswordComponent,
     ],
     providers: [],

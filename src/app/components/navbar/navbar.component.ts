@@ -2,6 +2,8 @@ import {Component, OnInit, ElementRef} from '@angular/core';
 import {ROUTES} from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {Router} from '@angular/router';
+import {AuthenticateService} from '../../pages/service/common-services/authenticate.service';
+import {constants} from '../../constants/constants';
 
 @Component({
     selector: 'app-navbar',
@@ -13,12 +15,16 @@ export class NavbarComponent implements OnInit {
     public listTitles: any[];
     public location: Location;
 
-    constructor(location: Location, private element: ElementRef, private router: Router) {
+    public userFullName:string;
+
+    constructor(location: Location, private element: ElementRef, private router: Router, public authenticationService:AuthenticateService) {
         this.location = location;
     }
 
     ngOnInit() {
         this.listTitles = ROUTES.filter(listTitle => listTitle);
+
+        this.userFullName = localStorage.getItem(constants.user_full_name_key);
     }
 
     getTitle() {
@@ -34,5 +40,14 @@ export class NavbarComponent implements OnInit {
         }
         return 'Dashboard';
     }
+
+    onLogOut(){
+
+        this.router.navigate(['/customer_Login'])
+
+        localStorage.clear();
+        //
+    }
+
 
 }

@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AlertService} from '../../_alert';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
+import {constants} from '../../../constants/constants';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CustomerLoginService {
 
-    private APP_URL = 'http://18.141.138.171:8012/';
     private options = {
         autoClose: true,
         keepAfterRouteChange: false
@@ -35,7 +35,7 @@ export class CustomerLoginService {
                 'Content-Type': 'application/x-www-form-urlencoded'
             });
 
-        const url = `${this.APP_URL + 'api/v1/authorize'}`;
+        const url = `${constants.base_url + 'api/v1/authorize'}`;
 
         this.httpClient.post(url, params.toString(), {headers: headers}).subscribe((data) => {
                 this.saveToken(data);
@@ -69,9 +69,10 @@ export class CustomerLoginService {
     }
 
     public _getUserDetails(customerEmail) {
-        const url = `${this.APP_URL + 'api/v1/user/getDetails/' + customerEmail}`;
+        const url = `${constants.base_url + 'api/v1/user/getDetails/' + customerEmail}`;
         this.httpClient.get(url).subscribe((data: []) => {
             localStorage.setItem('loggedUserId', data['body'].id);
+            localStorage.setItem(constants.user_full_name_key, data['body']['firstName'] + ' '+ data['body']['lastName']);
         }, error => {
 
         });

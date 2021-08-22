@@ -15,6 +15,7 @@ import {AdminLoginComponent} from 'src/app/pages/admin-login/admin-login.compone
 import {AdminRegisterComponent} from 'src/app/pages/admin-register/admin-register.component';
 import {FeedbackComponent} from 'src/app/pages/feedback/feedback.component';
 import { ForgetpasswordComponent } from 'src/app/pages/forgetpassword/forgetpassword.component';
+import {MyOrdersComponent} from '../../pages/my-orders/my-orders.component';
 
 export const AdminLayoutRoutes: Routes = [
     {path: 'dashboard', component: DashboardComponent},
@@ -31,5 +32,6 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'reg-Customer', component: RegisterCustomerComponent},
     {path: 'admin_Login', component: AdminLoginComponent},
     {path: 'reg_Admin', component: AdminRegisterComponent},
-    {path: 'forget_Password', component:ForgetpasswordComponent}
+    {path: 'forget_Password', component:ForgetpasswordComponent},
+    {path: 'my-orders', component:MyOrdersComponent}
 ];

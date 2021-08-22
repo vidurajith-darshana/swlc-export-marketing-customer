@@ -19,6 +19,16 @@
   display: block !important;
 }
 
+.nav-outer-ul{
+  width: 100%;
+  justify-content: flex-end!important;
+  display: flex !important;
+}
+
+.icon-border{
+  border: solid 2px;
+}
+
 @media screen and (max-width: 768px) {
   .mobile-padding {
     padding-left: 30px !important;

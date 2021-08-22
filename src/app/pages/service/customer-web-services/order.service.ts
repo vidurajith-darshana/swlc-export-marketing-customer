@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {constants} from '../../../constants/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  private APP_URL = 'http://18.141.138.171:8012/';
 
   constructor(private httpClient : HttpClient) { }
 
@@ -44,7 +44,7 @@ export class OrderService {
           'Content-Type': 'application/json'
         });
 
-    let url = `${this.APP_URL+'api/order/save'}`;
+    let url = `${constants.base_url+'api/order/save'}`;
     return this.httpClient.post(url,saveObject,{headers: headers});
   }
 }
