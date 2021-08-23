@@ -1,4 +1,4 @@
-const BASE_URL = 'http://54.251.224.107:8012/';
+const BASE_URL = 'http://103.125.216.56:8007/';
 
 const USER_FULL_NAME_KEY = 'USER_FULL_NAME';
 

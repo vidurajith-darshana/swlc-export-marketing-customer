@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {constants} from '../../../constants/constants';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,21 @@ export class OrderService {
 
     let url = `${constants.base_url+'api/order/save'}`;
     return this.httpClient.post(url,saveObject,{headers: headers});
+  }
+
+
+  getAllUsers():Observable<any>{
+
+    let details = JSON.parse(localStorage.getItem('token'));
+
+    let token = details['access_token'];
+
+    const headers =
+        new HttpHeaders({
+          'Authorization': 'Bearer '+token,
+          'Content-Type': 'application/json'
+        });
+
+    return this.httpClient.get<any>(constants.base_url+"api/order/getAll",{headers: headers});
   }
 }

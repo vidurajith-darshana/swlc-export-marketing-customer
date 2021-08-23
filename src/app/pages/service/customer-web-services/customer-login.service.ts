@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AlertService} from '../../_alert';
 import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 import {constants} from '../../../constants/constants';
+import {SharedService} from '../common-services/shared-service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,8 @@ export class CustomerLoginService {
         protected alertService: AlertService,
         private httpClient: HttpClient,
         private router: Router,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private sharedService:SharedService
     ) {
     }
 
@@ -72,7 +74,21 @@ export class CustomerLoginService {
         const url = `${constants.base_url + 'api/v1/user/getDetails/' + customerEmail}`;
         this.httpClient.get(url).subscribe((data: []) => {
             localStorage.setItem('loggedUserId', data['body'].id);
-            localStorage.setItem(constants.user_full_name_key, data['body']['firstName'] + ' '+ data['body']['lastName']);
+
+            let fullName= "";
+
+            if (data['body']['firstName'] != null){
+                fullName = data['body']['firstName'];
+            }
+
+            if (data['body']['lastName'] != null){
+                fullName += " "+data['body']['lastName'];
+            }
+
+            localStorage.setItem(constants.user_full_name_key, fullName);
+
+            this.sharedService.userNameEvent.emit(fullName);
+
         }, error => {
 
         });

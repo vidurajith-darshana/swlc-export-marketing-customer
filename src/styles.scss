@@ -3,3 +3,14 @@
 .ngx-pagination .current {
     background: #ee6322 !important;
 }
+
+.modal-content{
+    width: max-content!important;
+}
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: max-content!important;
+    }
+}
+

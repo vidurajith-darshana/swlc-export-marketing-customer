@@ -56,12 +56,13 @@
                     </div>
                     <a routerLinkActive="active" [routerLink]="['/my-orders']" class="dropdown-item">
                         <i class="ni ni-box-2"></i>
-                        <span>My Orders</span>
+                        <span >My Orders</span>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a [routerLink]="['']" (click)="onLogOut()" class="dropdown-item" style="cursor: pointer!important;">
+
+                    <a routerLinkActive="active" (click)="onLogOut()" style="cursor: pointer!important;" class="dropdown-item" >
                         <i class="ni ni-user-run"></i>
-                        <span>Logout</span>
+                        <span >Logout</span>
                     </a>
                 </div>
             </li>

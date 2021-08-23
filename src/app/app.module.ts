@@ -47,7 +47,8 @@ import {MyOrdersComponent} from './pages/my-orders/my-orders.component';
         NgProgressModule.withConfig({
             color: "black"
         }),
-        NgProgressHttpModule
+        NgProgressHttpModule,
+
 
     ],
     declarations: [

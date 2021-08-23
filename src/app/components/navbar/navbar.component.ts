@@ -1,9 +1,10 @@
-import {Component, OnInit, ElementRef} from '@angular/core';
+import {Component, OnInit, ElementRef, EventEmitter} from '@angular/core';
 import {ROUTES} from '../sidebar/sidebar.component';
 import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import {Router} from '@angular/router';
 import {AuthenticateService} from '../../pages/service/common-services/authenticate.service';
 import {constants} from '../../constants/constants';
+import {SharedService} from '../../pages/service/common-services/shared-service';
 
 @Component({
     selector: 'app-navbar',
@@ -17,7 +18,8 @@ export class NavbarComponent implements OnInit {
 
     public userFullName:string;
 
-    constructor(location: Location, private element: ElementRef, private router: Router, public authenticationService:AuthenticateService) {
+
+    constructor(location: Location, private element: ElementRef, private router: Router, public authenticationService:AuthenticateService,private sharedService:SharedService) {
         this.location = location;
     }
 
@@ -25,6 +27,14 @@ export class NavbarComponent implements OnInit {
         this.listTitles = ROUTES.filter(listTitle => listTitle);
 
         this.userFullName = localStorage.getItem(constants.user_full_name_key);
+
+        this.sharedService.userNameEvent.subscribe(
+            res=>{
+                this.userFullName = res;
+            }
+        )
+
+
     }
 
     getTitle() {
