@@ -1,6 +1,8 @@
 import {Component, OnInit, VERSION} from '@angular/core';
 import {Category} from '../model/category';
 import {CategoryService} from '../service/customer-web-services/category.service';
+import {ProductService} from "../service/customer-web-services/product.service";
+import {Product} from "../model/product";
 
 @Component({
     selector: 'app-categories',
@@ -12,6 +14,8 @@ export class CategoriesComponent implements OnInit {
     categoryName = 'Angular ' + VERSION.major;
 
     private categoryList: Category[];
+
+    private productList : Product[];
 
     product = [
         {
@@ -64,11 +68,15 @@ export class CategoriesComponent implements OnInit {
         }
     ];
 
-    constructor(private categoryService: CategoryService) {
+    constructor(
+        private categoryService: CategoryService,
+        private productService : ProductService
+        ) {
     };
 
     ngOnInit(): void {
         this.getAllCategoryList();
+        this.getProductList(0);
     }
 
     private getAllCategoryList() {
@@ -78,6 +86,14 @@ export class CategoriesComponent implements OnInit {
             },
             error => {
             });
+    }
+
+    private getProductList(pageNo){
+        this.productService._getAllProducts(pageNo).subscribe((data)=>{
+            console.log(data);
+        },error => {
+
+        })
     }
 
 }

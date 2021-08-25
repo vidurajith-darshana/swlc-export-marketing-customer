@@ -39,18 +39,13 @@ export class CustomerLoginService {
 
         const url = `${constants.base_url + 'api/v1/authorize'}`;
 
-        this.httpClient.post(url, params.toString(), {headers: headers}).subscribe((data) => {
-                this.saveToken(data);
-                this._getUserDetails(userName);
-                this.alertService.success('Login success', this.options);
-                this.router.navigate(['/heroes']);
-            }
-            ,
-            err => (
-                this.alertService.warn('Invalid Credentials', this.options)
-                // this.router.navigate(['/heroes'])
-            )
-        );
+        this.httpClient.post(url,params.toString(),{headers}).subscribe((data)=>{
+            this.saveToken(data);
+            this._getUserDetails(userName);
+            this.alertService.success('Login success', this.options);
+            this.router.navigate(['/categories']);
+        },error => {
+            this.alertService.warn('Invalid Credentials', this.options)    });
     }
 
     public saveToken(data) {

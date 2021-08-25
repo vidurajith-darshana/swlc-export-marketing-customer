@@ -14,4 +14,9 @@ export class ProductService {
         let url = `${constants.base_url + 'api/v1/user/product/all/category?category=' + categoryId + '&page=' + pageNo + '&size=5'}`;
         return this.httpClient.get(url);
     }
+
+    public _getAllProducts(pageNo){
+        let url = `${this.APP_URL + 'api/v1/user/product/all?page='+pageNo+'&size=10'}`;
+        return this.httpClient.get(url);
+    }
 }

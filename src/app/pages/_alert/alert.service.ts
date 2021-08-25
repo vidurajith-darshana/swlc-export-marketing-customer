@@ -29,7 +29,6 @@ export class AlertService {
 
     warn(message: string, options?: any) {
         this.alert(new Alert({...options, type: AlertType.Warning, message}));
-        console.log('aaaaaaaaaaaaaaaaa');
     }
 
     // main alert method
