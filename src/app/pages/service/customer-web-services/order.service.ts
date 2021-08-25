@@ -50,7 +50,7 @@ export class OrderService {
   }
 
 
-  getAllUsers():Observable<any>{
+  public getAllOrders():Observable<any>{
 
     let details = JSON.parse(localStorage.getItem('token'));
 

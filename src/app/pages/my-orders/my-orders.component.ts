@@ -21,7 +21,7 @@ export class MyOrdersComponent implements OnInit {
 
 
     getAllOrders() {
-        this.orderService.getAllUsers().subscribe(
+        this.orderService.getAllOrders().subscribe(
             res => {
                 if (res['success']) {
                     this.orders = res['body'];
