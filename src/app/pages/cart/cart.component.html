@@ -36,7 +36,7 @@
                                     {{products.itemPrice}}
                                 </td>
                                 <td>
-                                    <input type="number" [(ngModel)]="products.itemQty" value="1" min="0" max="1000"/>
+                                    <input (ngModelChange)="itemQtyOnChange($event,products.itemId,products.itemPrice)" type="number" [(ngModel)]="products.itemQty" value="1" min="1" max="1000"/>
                                 </td>
                                 <td>
                                     {{products.subTotal}}
@@ -56,8 +56,8 @@
                         </table>
                     </div>
                     <div class="button-set">
-                        <button type="button" class="btn btn-outline-secondary">Continue Shopping</button>
-                        <button type="button" class="btn btn-outline-danger">Clear Cart</button>
+                        <button type="button" (click)="_continueToShopping()" class="btn btn-outline-secondary">Continue Shopping</button>
+                        <button type="button" (click)="_clearAllItems()" class="btn btn-outline-danger">Clear Cart</button>
                     </div>
                 </div>
                 <div class="col-lg-4 col-sm-12">

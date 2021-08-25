@@ -51,8 +51,6 @@ export class CustomerLoginService {
     public saveToken(data) {
         // window.sessionStorage.setItem('token', );
         localStorage.setItem('token', JSON.stringify(data));
-        const itemList = new Array();
-        localStorage.setItem('itemList', JSON.stringify(itemList));
     }
 
     public checkCredentials() {
@@ -81,6 +79,9 @@ export class CustomerLoginService {
             }
 
             localStorage.setItem(constants.user_full_name_key, fullName);
+
+            const itemList = new Array();
+            localStorage.setItem('itemList', JSON.stringify(itemList));
 
             this.sharedService.userNameEvent.emit(fullName);
 

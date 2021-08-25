@@ -1,6 +1,6 @@
 /* tslint:disable:max-line-length */
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../model/product';
 import {ProductService} from '../service/customer-web-services/product.service';
 import {AlertService} from '../_alert';
@@ -24,7 +24,8 @@ export class ProductsComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         protected alertService: AlertService,
-        private productService: ProductService
+        private productService: ProductService,
+        private router : Router
     ) {
         this.config = {
             itemsPerPage: 1,
@@ -69,21 +70,42 @@ export class ProductsComponent implements OnInit {
         try {
             let subTotal = itemPrice * this.quantity;
             let list = JSON.parse(localStorage.getItem('itemList'));
+            if (list.length > 0){
+                let find = list.find(name => name.itemId === itemId);
+                if (find === undefined){
+                    let item = {
+                        itemId: itemId,
+                        itemName: itemName,
+                        itemImage: itemImage,
+                        itemPrice: itemPrice,
+                        itemQty: this.quantity,
+                        subTotal: subTotal
+                    };
+                    list.push(item);
+                }else{
+                    find.itemQty += this.quantity;
+                    find.subTotal += subTotal;
+                }
+            }else{
+                let item = {
+                    itemId: itemId,
+                    itemName: itemName,
+                    itemImage: itemImage,
+                    itemPrice: itemPrice,
+                    itemQty: this.quantity,
+                    subTotal: subTotal
+                };
+                list.push(item);
+            }
 
-            localStorage.removeItem('itemList');
-            let item = {
-                itemId: itemId,
-                itemName: itemName,
-                itemImage: itemImage,
-                itemPrice: itemPrice,
-                itemQty: this.quantity,
-                subTotal: subTotal
-            };
-            list.push(item);
             localStorage.setItem('itemList', JSON.stringify(list));
-            this.alertService.success(item.itemName + 'added to cart', this.options);
+            this.alertService.success(itemName + 'added to cart', this.options);
         } catch (e) {
             this.alertService.warn('Something went wrong', this.options)
         }
+    }
+
+    _continueToShopping(){
+        this.router.navigate(['/categories']);
     }
 }

@@ -98,31 +98,31 @@
     <div class="col-1"></div>
     <div class="col-xl-10 mb-5 mb-xl-0">
         <div class="card-columns">
-            <div *ngFor="let products of product" class="{{products.class}} card">
+            <div *ngFor="let products of productList" class="card">
                 <div class="product-img"><img src={{products.productThumbnail}} class="card-img-top"
                                               alt="products images "></div>
                 <div class="card-body">
-                    <h2 class="card-title">{{products.productName}}</h2>
-                    <h5 class="product-code">{{products.productCode}}</h5>
-                    <h3 class="product-price">{{products.productPrice}}</h3>
+                    <h2 class="card-title">{{products.name}}</h2>
+                    <h5 class="product-code">{{products.code}}</h5>
+                    <h3 class="product-price">{{products.price}}</h3>
                     <button class="btn btn-outline-danger btn-lg" data-toggle="modal"
-                            [attr.data-target]="'#myModal'+ products.productCode">
+                            [attr.data-target]="'#myModal'+ products.code">
                         Add To Cart
                     </button>
                 </div>
-                <div class="modal" id="myModal{{products.productCode}}">
+                <div class="modal" id="myModal{{products.code}}">
                     <div class="modal-dialog">
                         <div class="modal-content">
 
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="col-5"><img class="popup-image" src={{products.productThumbnail}}></div>
+                                    <div class="col-5"><img class="popup-image" src="{{products.thumbnail}}"></div>
                                     <div class="col-7">
-                                        <div class="product-Name-popup">{{products.productName}}</div>
-                                        <div class="product-price-popup">{{products.productPrice}}</div>
-                                        <div><span class="product-qty-popup">QTY</span><input type="number" value="1"
-                                                                                              min="0" max="1000"/></div>
+                                        <div class="product-Name-popup">{{products.name}}</div>
+                                        <div class="product-price-popup">{{products.price}}</div>
+                                        <div><span class="product-qty-popup">QTY</span><input [(ngModel)]="quantity" name="quantity" type="number" value="1"
+                                                                                              min="1" max="1000"/></div>
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +131,7 @@
                             <div class="modal-footer">
                                 <div class="button-set">
                                     <button type="button" class="btn btn-outline-secondary">Continue Shopping</button>
-                                    <button type="button" class="btn btn-outline-danger">Add To Cart</button>
+                                    <button type="button" (click)="_addToCartByHome(products.id,products.name,products.thumbnail,products.price)" class="btn btn-outline-danger">Add To Cart</button>
                                 </div>
                             </div>
 

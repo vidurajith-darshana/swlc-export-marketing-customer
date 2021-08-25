@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CartItems} from "../model/cart-items";
 import {OrderService} from "../service/customer-web-services/order.service";
 import {AlertService} from "../_alert";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-cart',
@@ -18,6 +19,7 @@ export class CartComponent implements OnInit {
     constructor(
         private orderService : OrderService,
         protected alertService: AlertService,
+        private router : Router
     ) {
     }
 
@@ -107,6 +109,27 @@ export class CartComponent implements OnInit {
         },error => {
             this.alertService.error('Order save failed!',this.options)
         });
+    }
+
+    _continueToShopping(){
+        this.router.navigate(['/categories']);
+    }
+
+    _clearAllItems(){
+        localStorage.removeItem('itemList');
+        const itemList = new Array();
+        localStorage.setItem('itemList', JSON.stringify(itemList));
+        this._getAddToCartItems();
+    }
+
+    itemQtyOnChange(value,itemId,unitPrice){
+        let find = this.productList.find(name => name.itemId === itemId);
+        if (find !== null){
+            find.itemQty = value;
+            find.subTotal = value * unitPrice;
+        }
+        localStorage.setItem('itemList', JSON.stringify(this.productList));
+        this._getAddToCartItems();
     }
 
 }

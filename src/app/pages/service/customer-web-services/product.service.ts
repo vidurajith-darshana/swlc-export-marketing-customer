@@ -16,7 +16,7 @@ export class ProductService {
     }
 
     public _getAllProducts(pageNo){
-        let url = `${this.APP_URL + 'api/v1/user/product/all?page='+pageNo+'&size=10'}`;
+        let url = `${constants.base_url + 'api/v1/user/product/all?page='+pageNo+'&size=10'}`;
         return this.httpClient.get(url);
     }
 }
