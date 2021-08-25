@@ -8,7 +8,7 @@ import {Router, ActivatedRoute, ParamMap} from '@angular/router';
 })
 export class CustomerLoginService {
 
-    private APP_URL = 'http://18.141.138.171:8012/';
+    private APP_URL = 'http://54.251.224.107:8012/';
     private options = {
         autoClose: true,
         keepAfterRouteChange: false
@@ -37,18 +37,13 @@ export class CustomerLoginService {
 
         const url = `${this.APP_URL + 'api/v1/authorize'}`;
 
-        this.httpClient.post(url, params.toString(), {headers: headers}).subscribe((data) => {
-                this.saveToken(data);
-                this._getUserDetails(userName);
-                this.alertService.success('Login success', this.options);
-                this.router.navigate(['/heroes']);
-            }
-            ,
-            err => (
-                this.alertService.warn('Invalid Credentials', this.options)
-                // this.router.navigate(['/heroes'])
-            )
-        );
+        this.httpClient.post(url,params.toString(),{headers}).subscribe((data)=>{
+            this.saveToken(data);
+            this._getUserDetails(userName);
+            this.alertService.success('Login success', this.options);
+            this.router.navigate(['/categories']);
+        },error => {
+            this.alertService.warn('Invalid Credentials', this.options)    });
     }
 
     public saveToken(data) {
