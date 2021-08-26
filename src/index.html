@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
     <meta name="author" content="Creative Tim">
-    <title>Chili</title>
+    <title>Chilli</title>
     <!-- Favicon -->
     <link href="./assets/img/brand/chilli.jpg" rel="icon" type="image/png">
     <!-- Fonts -->
@@ -50,7 +50,7 @@
 
 </head>
 <body>
-<div id="loader">
+<div id="loader" style="z-index: 1;">
     <style>
         .application-loading-container {
             display: flex;
@@ -70,9 +70,12 @@
         }
     </style>
     <div class="application-loading-container">
-        <div class="application-loading-box"><h2 style="font-size: 30px !important;color: black;font-weight: 500">Loading...</h2></div>
+        <div class="application-loading-box"><h2 style="font-size: 30px !important;color: black;font-weight: 500">
+            Loading...</h2></div>
     </div>
 </div>
-<app-root></app-root>
+<div style="z-index: 2;position: absolute;width: 100%;background: white;">
+    <app-root></app-root>
+</div>
 </body>
 </html>
