@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<div class="container-fluid mt--7">
+<!-- <div class="container-fluid mt--7">
     <div class="row">
         <div class="col-xl-12 mb-5 mb-xl-0">
             <div class="container">
@@ -90,7 +90,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <h1 class="best-product">Most Popular Products</h1>
@@ -113,11 +113,15 @@
                 <div class="modal" id="myModal{{products.code}}">
                     <div class="modal-dialog">
                         <div class="modal-content">
-
+                            <div class="modal-header" style="padding: 0.5rem;">
+                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
                             <!-- Modal body -->
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="col-5"><img class="popup-image" src="{{products.thumbnail}}"></div>
+                                     <div class="col-5"><img class="popup-image" src="{{products.thumbnail}}"></div>
                                     <div class="col-7">
                                         <div class="product-Name-popup">{{products.name}}</div>
                                         <div class="product-price-popup">{{products.price}}</div>
