@@ -41,7 +41,8 @@
                             <label for="e3xampleFormControlInput13">Name</label>
                             <input type="text" placeholder="Regular" id="e3xampleFormControlInput13"
                                    class="form-control tf-background"
-                            [(ngModel)]="feedbackUiModel.cusName">
+                            [(ngModel)]="feedbackUiModel.customerName"
+                                   [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -49,13 +50,14 @@
                             <label for="e3xampleFormControlInput1">Email</label>
                             <input type="email" class="form-control tf-background" id="e3xampleFormControlInput1"
                                    placeholder="name@example.com"
-                                   [(ngModel)]="feedbackUiModel.email">
+                                   [(ngModel)]="feedbackUiModel.email"
+                                   [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea12">Description</label>
-                            <textarea class="form-control tf-background" id="exampleFormControlTextarea12" rows="3"
+                            <textarea class="form-control tf-background" id="exampleFormControlTextarea12" rows="3" [ngModelOptions]="{standalone: true}"
                                       placeholder="Write a Description here ..." [(ngModel)]="feedbackUiModel.description"></textarea>
                         </div>
                     </div>

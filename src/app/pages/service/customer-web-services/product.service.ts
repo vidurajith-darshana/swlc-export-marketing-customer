@@ -21,7 +21,7 @@ export class ProductService {
     }
 
     sendFeedback(feedbackUiModel: any) {
-        let url = `${constants.base_url + 'api/v1/user/product/sendfeedback'}`;
+        let url = `${constants.base_url + 'api/v1/user/product/request-details'}`;
         return this.httpClient.post(url,feedbackUiModel);
     }
 }

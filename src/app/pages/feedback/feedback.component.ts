@@ -11,8 +11,7 @@ import {AlertService} from "../_alert";
 })
 export class FeedbackComponent implements OnInit {
 
-    constructor(private productService: ProductService,
-                protected alertService: AlertService) {
+    constructor(protected alertService: AlertService,private productService: ProductService) {
     }
 
     private productList: Product[];
@@ -25,8 +24,9 @@ export class FeedbackComponent implements OnInit {
     keyword = 'name';
 
     public feedbackUiModel = {
+        productName:null,
         productCode: null,
-        cusName: null,
+        customerName: null,
         email: null,
         description: null
     }
@@ -49,6 +49,7 @@ export class FeedbackComponent implements OnInit {
 
 
     selectEvent(item) {
+        this.feedbackUiModel.productName = item.name
         this.feedbackUiModel.productCode = item.code
     }
 
@@ -62,22 +63,22 @@ export class FeedbackComponent implements OnInit {
     }
 
     sendFeedback() {
-        if ((this.feedbackUiModel.productCode == '' || this.feedbackUiModel.productCode) &&
-            (this.feedbackUiModel.cusName == '' || this.feedbackUiModel.cusName) &&
-            (this.feedbackUiModel.email == '' || this.feedbackUiModel.email) &&
-            (this.feedbackUiModel.description == '' || this.feedbackUiModel.description)) {
+        if ((this.feedbackUiModel.productCode == '' || this.feedbackUiModel.productCode == null) ||
+            (this.feedbackUiModel.customerName == '' || this.feedbackUiModel.customerName == null) ||
+            (this.feedbackUiModel.email == '' || this.feedbackUiModel.email == null) ||
+            (this.feedbackUiModel.description == '' || this.feedbackUiModel.description == null)) {
 
             this.alertService.warn('Check whether all fields are filled', this.options)
-            return
+
+        } else {
+            this.productService.sendFeedback(this.feedbackUiModel).subscribe((data) => {
+                if (data['success']) {
+                    this.productList = data['body'].content;
+                }
+            }, error => {
+
+            })
         }
-
-        this.productService.sendFeedback(this.feedbackUiModel).subscribe((data) => {
-            if (data['success']) {
-                this.productList = data['body'].content;
-            }
-        }, error => {
-
-        })
 
     }
 }
