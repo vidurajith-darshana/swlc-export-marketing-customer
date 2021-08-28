@@ -40,7 +40,7 @@ export class FeedbackComponent implements OnInit {
     private getAllProducts() {
         this.productService.getAllProducts().subscribe((data) => {
             if (data['success']) {
-                this.productList = data['body'].content;
+                this.productList = data['body'];
             }
         }, error => {
 
