@@ -104,7 +104,7 @@
                 <div class="card-body">
                     <h2 class="card-title">{{products.name}}</h2>
                     <h5 class="product-code">{{products.code}}</h5>
-                    <h3 class="product-price">{{products.price}}</h3>
+                    <h3 class="product-price">{{products.price | currency:'LKR'}}</h3>
                     <button class="btn btn-outline-danger btn-lg" data-toggle="modal"
                             [attr.data-target]="'#myModal'+ products.code">
                         Add To Cart

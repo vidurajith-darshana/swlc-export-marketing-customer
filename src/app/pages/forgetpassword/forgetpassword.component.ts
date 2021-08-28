@@ -8,7 +8,7 @@ import {UserService} from "../service/common-services/user.service";
 })
 export class ForgetpasswordComponent implements OnInit {
 
-  senderEmail : string = "vidu996@gmail.com";
+  senderEmail : string = "chanukas100@gmail.com";
 
   constructor(
       private userService : UserService

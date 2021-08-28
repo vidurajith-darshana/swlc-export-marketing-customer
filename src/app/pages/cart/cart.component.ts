@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CartItems} from "../model/cart-items";
-import {OrderService} from "../service/customer-web-services/order.service";
-import {AlertService} from "../_alert";
-import {Router} from "@angular/router";
+import {CartItems} from '../model/cart-items';
+import {OrderService} from '../service/customer-web-services/order.service';
+import {AlertService} from '../_alert';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-cart',
@@ -17,16 +17,16 @@ export class CartComponent implements OnInit {
     };
 
     constructor(
-        private orderService : OrderService,
+        private orderService: OrderService,
         protected alertService: AlertService,
-        private router : Router
+        private router: Router
     ) {
     }
 
-    private productList : CartItems[];
-    private itemTotalAmount : any;
-    private orderTotalAmount : any;
-    private message : string;
+    private productList: CartItems[];
+    private itemTotalAmount: any;
+    private orderTotalAmount: any;
+    private message: string;
 
     product = [
 
@@ -72,59 +72,64 @@ export class CartComponent implements OnInit {
         this._getAddToCartItems();
     }
 
-    private _getAddToCartItems(){
-         this.productList = JSON.parse(localStorage.getItem('itemList'));
-         let orderTotal = 0;
-         for (let i in this.productList){
-             let item = this.productList[i];
-             let itemSubTot = item.subTotal;
-             orderTotal += itemSubTot;
-         }
-         this.itemTotalAmount = orderTotal.toFixed(2);
-         this.orderTotalAmount = orderTotal.toFixed(2);
+    private _getAddToCartItems() {
+        this.productList = JSON.parse(localStorage.getItem('itemList'));
+        let orderTotal = 0;
+        for (let i in this.productList) {
+            let item = this.productList[i];
+            let itemSubTot = item.subTotal;
+            orderTotal += itemSubTot;
+        }
+        this.itemTotalAmount = orderTotal.toFixed(2);
+        this.orderTotalAmount = orderTotal.toFixed(2);
     }
 
-    private _removeItemFromCart(itemId){
+    private _removeItemFromCart(itemId) {
         this.productList = JSON.parse(localStorage.getItem('itemList'));
         localStorage.removeItem('itemList');
         let item = this.productList.find(name => name.itemId === itemId);
-        if (item !== null){
-            this.productList.splice(this.productList.indexOf(item),1);
+        if (item !== null) {
+            this.productList.splice(this.productList.indexOf(item), 1);
         }
-        localStorage.setItem('itemList',JSON.stringify(this.productList));
+        localStorage.setItem('itemList', JSON.stringify(this.productList));
         this._getAddToCartItems();
     }
 
-    private _saveOrder(){
+    private _saveOrder() {
         let fkUserId = JSON.parse(localStorage.getItem('loggedUserId'));
-        this.orderService.saveOrder(fkUserId,this.orderTotalAmount,this.message,'PENDING').subscribe((data) =>{
-            if (data['success']){
-                this.alertService.success('Order Save success',this.options);
+        this.orderService.saveOrder(fkUserId, this.orderTotalAmount, this.message, 'PENDING').subscribe((data) => {
+            if (data['success']) {
+                this.alertService.success('Order Save success', this.options);
                 const itemList = new Array();
                 localStorage.setItem('itemList', JSON.stringify(itemList));
                 this._getAddToCartItems();
-            }else {
-                this.alertService.error(data['message'],this.options);
+
+                this.itemTotalAmount = '';
+                this.orderTotalAmount = '';
+                this.message = '';
+
+            } else {
+                this.alertService.error(data['message'], this.options);
             }
-        },error => {
-            this.alertService.error('Order save failed!',this.options)
+        }, error => {
+            this.alertService.error('Order save failed!', this.options);
         });
     }
 
-    _continueToShopping(){
+    _continueToShopping() {
         this.router.navigate(['/categories']);
     }
 
-    _clearAllItems(){
+    _clearAllItems() {
         localStorage.removeItem('itemList');
         const itemList = new Array();
         localStorage.setItem('itemList', JSON.stringify(itemList));
         this._getAddToCartItems();
     }
 
-    itemQtyOnChange(value,itemId,unitPrice){
+    itemQtyOnChange(value, itemId, unitPrice) {
         let find = this.productList.find(name => name.itemId === itemId);
-        if (find !== null){
+        if (find !== null) {
             find.itemQty = value;
             find.subTotal = value * unitPrice;
         }
