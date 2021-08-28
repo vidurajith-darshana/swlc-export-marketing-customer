@@ -24,8 +24,8 @@ export class FeedbackComponent implements OnInit {
     keyword = 'name';
 
     public feedbackUiModel = {
-        productName:null,
         productCode: null,
+        productName:null,
         customerName: null,
         email: null,
         description: null
@@ -62,7 +62,7 @@ export class FeedbackComponent implements OnInit {
         // do something when input is focused
     }
 
-    sendFeedback() {
+    requestProductDetails() {
         if ((this.feedbackUiModel.productCode == '' || this.feedbackUiModel.productCode == null) ||
             (this.feedbackUiModel.customerName == '' || this.feedbackUiModel.customerName == null) ||
             (this.feedbackUiModel.email == '' || this.feedbackUiModel.email == null) ||
@@ -76,7 +76,8 @@ export class FeedbackComponent implements OnInit {
                     this.productList = data['body'].content;
                 }
             }, error => {
-
+                console.log(error.message)
+                this.alertService.warn(error.message, this.options)
             })
         }
 
