@@ -19,4 +19,9 @@ export class ProductService {
         let url = `${constants.base_url + 'api/v1/user/product/all?page='+pageNo+'&size=10'}`;
         return this.httpClient.get(url);
     }
+
+    sendFeedback(feedbackUiModel: any) {
+        let url = `${constants.base_url + 'api/v1/user/product/sendfeedback'}`;
+        return this.httpClient.post(url,feedbackUiModel);
+    }
 }
