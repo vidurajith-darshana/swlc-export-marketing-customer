@@ -19,4 +19,14 @@ export class ProductService {
         let url = `${constants.base_url + 'api/v1/user/product/all?page='+pageNo+'&size=10'}`;
         return this.httpClient.get(url);
     }
+
+    public getAllProducts(){
+        let url = `${constants.base_url + 'api/v1/user/product/active'}`;
+        return this.httpClient.get(url);
+    }
+
+    sendFeedback(feedbackUiModel: any) {
+        let url = `${constants.base_url + 'api/v1/user/product/request-details'}`;
+        return this.httpClient.post(url,feedbackUiModel);
+    }
 }

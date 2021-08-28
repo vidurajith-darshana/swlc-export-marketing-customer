@@ -1,68 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import {ProductService} from "../service/customer-web-services/product.service";
+import {Product} from "../model/product";
+import {AlertService} from "../_alert";
 
-
-// const states: State[] = [
-//     {id: 0, name: 'Alabama'},
-//     {id: 1, name: 'Alaska'},
-//     {id: 2, name: 'American Samoa'},
-//     {id: 3, name: 'Arizona'},
-//     {id: 4, name: 'Arkansas'},
-//     {id: 5, name: 'California'},
-//     {id: 6, name: 'Colorado'},
-//     {id: 7, name: 'Connecticut'},
-//     {id: 8, name: 'Delaware'},
-//     {id: 9, name: 'District Of Columbia'},
-//     {id: 10, name: 'Federated States Of Micronesia'},
-//     {id: 11, name: 'Florida'},
-//     {id: 12, name: 'Georgia'},
-//     {id: 13, name: 'Guam'},
-//     {id: 14, name: 'Hawaii'},
-//     {id: 15, name: 'Idaho'},
-//     {id: 16, name: 'Illinois'},
-//     {id: 17, name: 'Indiana'},
-//     {id: 18, name: 'Iowa'},
-//     {id: 19, name: 'Kansas'},
-//     {id: 20, name: 'Kentucky'},
-//     {id: 21, name: 'Louisiana'},
-//     {id: 22, name: 'Maine'},
-//     {id: 23, name: 'Marshall Islands'},
-//     {id: 24, name: 'Maryland'},
-//     {id: 25, name: 'Massachusetts'},
-//     {id: 26, name: 'Michigan'},
-//     {id: 27, name: 'Minnesota'},
-//     {id: 28, name: 'Mississippi'},
-//     {id: 29, name: 'Missouri'},
-//     {id: 30, name: 'Montana'},
-//     {id: 31, name: 'Nebraska'},
-//     {id: 32, name: 'Nevada'},
-//     {id: 33, name: 'New Hampshire'},
-//     {id: 34, name: 'New Jersey'},
-//     {id: 35, name: 'New Mexico'},
-//     {id: 36, name: 'New York'},
-//     {id: 37, name: 'North Carolina'},
-//     {id: 38, name: 'North Dakota'},
-//     {id: 39, name: 'Northern Mariana Islands'},
-//     {id: 40, name: 'Ohio'},
-//     {id: 41, name: 'Oklahoma'},
-//     {id: 42, name: 'Oregon'},
-//     {id: 43, name: 'Palau'},
-//     {id: 44, name: 'Pennsylvania'},
-//     {id: 45, name: 'Puerto Rico'},
-//     {id: 46, name: 'Rhode Island'},
-//     {id: 47, name: 'South Carolina'},
-//     {id: 48, name: 'South Dakota'},
-//     {id: 49, name: 'Tennessee'},
-//     {id: 50, name: 'Texas'},
-//     {id: 51, name: 'Utah'},
-//     {id: 52, name: 'Vermont'},
-//     {id: 53, name: 'Virgin Islands'},
-//     {id: 54, name: 'Virginia'},
-//     {id: 55, name: 'Washington'},
-//     {id: 56, name: 'West Virginia'},
-//     {id: 57, name: 'Wisconsin'},
-//     {id: 58, name: 'Wyoming'}
-// ];
 
 @Component({
     selector: 'app-feedback',
@@ -71,39 +11,46 @@ import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 })
 export class FeedbackComponent implements OnInit {
 
-    constructor() {
+    constructor(protected alertService: AlertService,private productService: ProductService) {
     }
 
+    private productList: Product[];
+
+    private options = {
+        autoClose: false,
+        keepAfterRouteChange: false
+    };
+
     keyword = 'name';
-    data = [
-        {
-            id: 1,
-            name: 'Usa'
-        },
-        {
-            id: 2,
-            name: 'England'
-        },
-        {
-            id: 3,
-            name: 'Englanssd'
-        },
-        {
-            id: 4,
-            name: 'Engladddnd'
-        },
-        {
-            id: 5,
-            name: 'Englanffffd'
-        }
-    ];
+
+    public feedbackUiModel = {
+        productCode: null,
+        productName:null,
+        customerName: null,
+        email: null,
+        description: null
+    }
+
+    private product: any;
 
     ngOnInit(): void {
+        this.getAllProducts()
+    }
+
+    private getAllProducts() {
+        this.productService.getAllProducts().subscribe((data) => {
+            if (data['success']) {
+                this.productList = data['body'];
+            }
+        }, error => {
+
+        })
     }
 
 
     selectEvent(item) {
-        // do something with selected item
+        this.feedbackUiModel.productName = item.name
+        this.feedbackUiModel.productCode = item.code
     }
 
     onChangeSearch(val: string) {
@@ -113,5 +60,26 @@ export class FeedbackComponent implements OnInit {
 
     onFocused(e) {
         // do something when input is focused
+    }
+
+    requestProductDetails() {
+        if ((this.feedbackUiModel.productCode == '' || this.feedbackUiModel.productCode == null) ||
+            (this.feedbackUiModel.customerName == '' || this.feedbackUiModel.customerName == null) ||
+            (this.feedbackUiModel.email == '' || this.feedbackUiModel.email == null) ||
+            (this.feedbackUiModel.description == '' || this.feedbackUiModel.description == null)) {
+
+            this.alertService.warn('Check whether all fields are filled', this.options)
+
+        } else {
+            this.productService.sendFeedback(this.feedbackUiModel).subscribe((data) => {
+                if (data['success']) {
+                    this.productList = data['body'].content;
+                }
+            }, error => {
+                console.log(error.message)
+                this.alertService.warn("Something went wrong", this.options)
+            })
+        }
+
     }
 }
