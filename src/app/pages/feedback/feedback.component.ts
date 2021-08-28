@@ -77,7 +77,7 @@ export class FeedbackComponent implements OnInit {
                 }
             }, error => {
                 console.log(error.message)
-                this.alertService.warn(error.message, this.options)
+                this.alertService.warn("Something went wrong", this.options)
             })
         }
 
