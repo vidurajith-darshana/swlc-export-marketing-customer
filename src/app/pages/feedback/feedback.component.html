@@ -1,7 +1,7 @@
 <div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
     <div class="container-fluid">
         <div class="header-body">
-            <h1 class="header-title">Feedbacks</h1>
+            <h1 class="header-title">Request More Product Details</h1>
         </div>
     </div>
 </div>
@@ -16,7 +16,7 @@
                             <div class="ng-autocomplete tf-background-autocompleate">
                                 <label>Enter Product Name</label>
                                 <ng-autocomplete
-                                        [data]="data"
+                                        [data]="productList"
                                         [searchKeyword]="keyword"
                                         (selected)='selectEvent($event)'
                                         (inputChanged)='onChangeSearch($event)'
@@ -40,25 +40,27 @@
                         <div class="form-group">
                             <label for="e3xampleFormControlInput13">Name</label>
                             <input type="text" placeholder="Regular" id="e3xampleFormControlInput13"
-                                   class="form-control tf-background">
+                                   class="form-control tf-background"
+                            [(ngModel)]="feedbackUiModel.cusName">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="e3xampleFormControlInput1">Email</label>
                             <input type="email" class="form-control tf-background" id="e3xampleFormControlInput1"
-                                   placeholder="name@example.com">
+                                   placeholder="name@example.com"
+                                   [(ngModel)]="feedbackUiModel.email">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea12">Description</label>
                             <textarea class="form-control tf-background" id="exampleFormControlTextarea12" rows="3"
-                                      placeholder="Write a Description here ..."></textarea>
+                                      placeholder="Write a Description here ..." [(ngModel)]="feedbackUiModel.description"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-outline-danger btn-lg">Send Your Feedback</button>
+                        <button type="button" class="btn btn-outline-danger btn-lg" (click)="sendFeedback()">Send Your Feedback</button>
                     </div>
                 </div>
             </form>
