@@ -38,7 +38,7 @@ export class FeedbackComponent implements OnInit {
     }
 
     private getAllProducts() {
-        this.productService._getAllProducts(0).subscribe((data) => {
+        this.productService.getAllProducts().subscribe((data) => {
             if (data['success']) {
                 this.productList = data['body'].content;
             }
