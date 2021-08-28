@@ -25,7 +25,7 @@ export class ProductsComponent implements OnInit {
         private route: ActivatedRoute,
         protected alertService: AlertService,
         private productService: ProductService,
-        private router : Router
+        private router : Router,
     ) {
         this.config = {
             itemsPerPage: 1,
@@ -67,12 +67,27 @@ export class ProductsComponent implements OnInit {
     }
 
     private _addToCart(itemId,itemName,itemImage,itemPrice){
-        try {
-            let subTotal = itemPrice * this.quantity;
-            let list = JSON.parse(localStorage.getItem('itemList'));
-            if (list.length > 0){
-                let find = list.find(name => name.itemId === itemId);
-                if (find === undefined){
+        if (this.quantity > 0){
+            try {
+                let subTotal = itemPrice * this.quantity;
+                let list = JSON.parse(localStorage.getItem('itemList'));
+                if (list.length > 0){
+                    let find = list.find(name => name.itemId === itemId);
+                    if (find === undefined){
+                        let item = {
+                            itemId: itemId,
+                            itemName: itemName,
+                            itemImage: itemImage,
+                            itemPrice: itemPrice,
+                            itemQty: this.quantity,
+                            subTotal: subTotal
+                        };
+                        list.push(item);
+                    }else{
+                        find.itemQty += this.quantity;
+                        find.subTotal += subTotal;
+                    }
+                }else{
                     let item = {
                         itemId: itemId,
                         itemName: itemName,
@@ -82,26 +97,15 @@ export class ProductsComponent implements OnInit {
                         subTotal: subTotal
                     };
                     list.push(item);
-                }else{
-                    find.itemQty += this.quantity;
-                    find.subTotal += subTotal;
                 }
-            }else{
-                let item = {
-                    itemId: itemId,
-                    itemName: itemName,
-                    itemImage: itemImage,
-                    itemPrice: itemPrice,
-                    itemQty: this.quantity,
-                    subTotal: subTotal
-                };
-                list.push(item);
-            }
 
-            localStorage.setItem('itemList', JSON.stringify(list));
-            this.alertService.success(itemName + 'added to cart', this.options);
-        } catch (e) {
-            this.alertService.warn('Something went wrong', this.options)
+                localStorage.setItem('itemList', JSON.stringify(list));
+                this.alertService.success(itemName + 'added to cart', this.options);
+            } catch (e) {
+                this.alertService.warn('Something went wrong', this.options)
+            }
+        }else {
+            this.alertService.warn('Quantity must be greater than 0', this.options);
         }
     }
 

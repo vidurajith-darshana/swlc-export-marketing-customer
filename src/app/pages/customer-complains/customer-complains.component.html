@@ -15,26 +15,27 @@
                         <label class="radio-inline"><input type="radio" name="optradio" checked>Anonimously</label>
                        </div>
                         <div class="col-md-12">
-                            <label class="radio-inline"><input type="radio" name="optradio">Already have account</label>
+                            <label class="radio-inline">
+                            <input type="radio" [(ngModel)]="customerType" (change)="onItemChange($event)" name="optradio">Already have account</label>
                         </div>
                     
                     <div class="col-md-12">
-                        <label for="exampleFormControlTextarea11">Complain Type</label>
+                        <label>Complain Type</label>
                         <div class="form-group">
-                    <select class="form-control">
-                        <option>Default select</option>
+                    <select class="form-control" name="complain-type" [(ngModel)]="complainType">
+                        <option value="PRODUCT">PRODUCT</option>
                       </select>
                       </div>
                       </div>
                   <div class="col-md-12">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea12">Complain</label>
-                            <textarea class="form-control tf-background" id="exampleFormControlTextarea12" rows="3"
+                            <textarea [(ngModel)]="complainComment" name="complain_comment" class="form-control tf-background" id="exampleFormControlTextarea12" rows="3"
                                       placeholder="Write a complain here ..."></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-outline-danger btn-lg">Send Your Review</button>
+                        <button type="button" (click)="createComplain()" class="btn btn-outline-danger btn-lg">Send Your Review</button>
                     </div>
                 </div>
             </form>

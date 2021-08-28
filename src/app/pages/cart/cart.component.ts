@@ -122,6 +122,13 @@ export class CartComponent implements OnInit {
         this._getAddToCartItems();
     }
 
+    clearText(){
+        this.productList = [];
+        this.itemTotalAmount = 0;
+        this.orderTotalAmount = 0;
+        this.message = '';
+    }
+
     itemQtyOnChange(value,itemId,unitPrice){
         let find = this.productList.find(name => name.itemId === itemId);
         if (find !== null){
