@@ -11,8 +11,7 @@ import {AlertService} from "../_alert";
 })
 export class FeedbackComponent implements OnInit {
 
-    constructor(private productService: ProductService,
-                protected alertService: AlertService) {
+    constructor(protected alertService: AlertService,private productService: ProductService) {
     }
 
     private productList: Product[];
@@ -26,7 +25,8 @@ export class FeedbackComponent implements OnInit {
 
     public feedbackUiModel = {
         productCode: null,
-        cusName: null,
+        productName:null,
+        customerName: null,
         email: null,
         description: null
     }
@@ -38,9 +38,9 @@ export class FeedbackComponent implements OnInit {
     }
 
     private getAllProducts() {
-        this.productService._getAllProducts(0).subscribe((data) => {
+        this.productService.getAllProducts().subscribe((data) => {
             if (data['success']) {
-                this.productList = data['body'].content;
+                this.productList = data['body'];
             }
         }, error => {
 
@@ -49,6 +49,7 @@ export class FeedbackComponent implements OnInit {
 
 
     selectEvent(item) {
+        this.feedbackUiModel.productName = item.name
         this.feedbackUiModel.productCode = item.code
     }
 
@@ -61,23 +62,24 @@ export class FeedbackComponent implements OnInit {
         // do something when input is focused
     }
 
-    sendFeedback() {
-        if ((this.feedbackUiModel.productCode == '' || this.feedbackUiModel.productCode) &&
-            (this.feedbackUiModel.cusName == '' || this.feedbackUiModel.cusName) &&
-            (this.feedbackUiModel.email == '' || this.feedbackUiModel.email) &&
-            (this.feedbackUiModel.description == '' || this.feedbackUiModel.description)) {
+    requestProductDetails() {
+        if ((this.feedbackUiModel.productCode == '' || this.feedbackUiModel.productCode == null) ||
+            (this.feedbackUiModel.customerName == '' || this.feedbackUiModel.customerName == null) ||
+            (this.feedbackUiModel.email == '' || this.feedbackUiModel.email == null) ||
+            (this.feedbackUiModel.description == '' || this.feedbackUiModel.description == null)) {
 
             this.alertService.warn('Check whether all fields are filled', this.options)
-            return
+
+        } else {
+            this.productService.sendFeedback(this.feedbackUiModel).subscribe((data) => {
+                if (data['success']) {
+                    this.productList = data['body'].content;
+                }
+            }, error => {
+                console.log(error.message)
+                this.alertService.warn("Something went wrong", this.options)
+            })
         }
-
-        this.productService.sendFeedback(this.feedbackUiModel).subscribe((data) => {
-            if (data['success']) {
-                this.productList = data['body'].content;
-            }
-        }, error => {
-
-        })
 
     }
 }

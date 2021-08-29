@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {constants} from '../../../constants/constants';
 
 @Injectable({
@@ -7,8 +7,10 @@ import {constants} from '../../../constants/constants';
 })
 export class ProductService {
 
+
     constructor(private httpClient: HttpClient) {
     }
+
 
     public _getProductList(categoryId, pageNo) {
         let url = `${constants.base_url + 'api/v1/user/product/all/category?category=' + categoryId + '&page=' + pageNo + '&size=5'}`;
@@ -20,8 +22,15 @@ export class ProductService {
         return this.httpClient.get(url);
     }
 
+    public getAllProducts(){
+        let url = `${constants.base_url + 'api/v1/user/product/active'}`;
+        return this.httpClient.get(url);
+    }
+
     sendFeedback(feedbackUiModel: any) {
-        let url = `${constants.base_url + 'api/v1/user/product/sendfeedback'}`;
+
+
+        let url = `${constants.base_url + 'api/v1/user/product/request-details'}`;
         return this.httpClient.post(url,feedbackUiModel);
     }
 }
