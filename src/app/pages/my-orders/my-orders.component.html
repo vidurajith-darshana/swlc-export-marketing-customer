@@ -37,7 +37,7 @@
                                 {{order['total'] | currency:'LKR'}}
                             </td>
                             <td>
-                                <button type="button" class="btn btn-default" (click)="open(content,order['orderDetails'])">View Order Details</button>
+                                <button type="button" class="btn btn-default" (click)="open(content,order['fkOrder'])">View Order Details</button>
                             </td>
 
                         </tr>
@@ -62,6 +62,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+
     <div class="modal-body">
         <div class="row">
             <div class="col">
@@ -71,6 +72,8 @@
                             <thead class="thead-light">
                             <tr>
                                 <th scope="col">Product Id</th>
+                                <th scope="col">Product Name</th>
+                                <th scope="col">Product Thumbnail</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">QTY</th>
                                 <th scope="col">Sub Total</th>
@@ -78,8 +81,17 @@
                             </thead>
                             <tbody>
                             <tr *ngFor="let orderDetail of orderDetails">
+
                                 <th scope="row">
-                                    {{orderDetail['fkProductId']}}
+                                    {{orderDetail['product']['id']}}
+                                </th>
+
+                                <th scope="row">
+                                    {{orderDetail['product']['name']}}
+                                </th>
+
+                                <th scope="row">
+                                    <img class="product-image" [src]="orderDetail['product']['thumbnail']" alt="">
                                 </th>
 
                                 <td>
@@ -91,6 +103,7 @@
                                 <td>
                                     {{orderDetail['subTotal'] | currency:'LKR'}}
                                 </td>
+
 
                             </tr>
 

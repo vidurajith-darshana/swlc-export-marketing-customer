@@ -30,9 +30,8 @@
         <div class="header-body">
             <h1 class="header-title">Categories</h1>
             <div class="card-columns col-12">
-                <a *ngFor=" let categories of categoryList " class="card card-stats "
-                   href="/products?id={{categories.id}}">
-                    <div class="card-body">
+                <a *ngFor=" let categories of categoryList " class="card card-stats" style="cursor: pointer!important;" >
+                    <div class="card-body" (click)="openCategoryPage(categories)">
                         <div class="row">
                             <div class="col">
                                 <span class="h2 font-weight-bold mb-0">{{categories.name}}</span>
@@ -104,13 +103,13 @@
                 <div class="card-body">
                     <h2 class="card-title">{{products.name}}</h2>
                     <h5 class="product-code">{{products.code}}</h5>
-                    <h3 class="product-price">{{products.price | currency:'LKR'}}</h3>
+                    <h3 class="product-price">{{products.price | currency}}</h3>
                     <button class="btn btn-outline-danger btn-lg" data-toggle="modal"
                             [attr.data-target]="'#myModal'+ products.code">
                         Add To Cart
                     </button>
                 </div>
-                <div class="modal" id="myModal{{products.code}}">
+                <div class="modal" #addModel id="myModal{{products.code}}">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header" style="padding: 0.5rem;">
@@ -134,7 +133,7 @@
                             <!-- Modal footer -->
                             <div class="modal-footer">
                                 <div class="button-set">
-                                    <button type="button" class="btn btn-outline-secondary">Continue Shopping</button>
+                                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Continue Shopping</button>
                                     <button type="button" (click)="_addToCartByHome(products.id,products.name,products.thumbnail,products.price)" class="btn btn-outline-danger">Add To Cart</button>
                                 </div>
                             </div>

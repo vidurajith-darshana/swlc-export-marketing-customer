@@ -5,6 +5,8 @@ import {ProductService} from "../service/customer-web-services/product.service";
 import {Product} from "../model/product";
 import {AlertService} from "../_alert";
 import {Router} from "@angular/router";
+import {AuthenticateService} from '../service/common-services/authenticate.service';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
     selector: 'app-categories',
@@ -31,7 +33,9 @@ export class CategoriesComponent implements OnInit {
         protected alertService: AlertService,
         private categoryService: CategoryService,
         private productService : ProductService,
-        private router : Router
+        private router : Router,
+        private authService : AuthenticateService,
+        private ntService:NotifierService
         ) {
     };
 
@@ -60,43 +64,53 @@ export class CategoriesComponent implements OnInit {
     }
 
     private _addToCartByHome(itemId,itemName,itemImage,itemPrice){
-        try {
-            let subTotal = itemPrice * this.quantity;
-            let list = JSON.parse(localStorage.getItem('itemList'));
-            if (list.length > 0){
-                let find = list.find(name => name.itemId === itemId);
-                console.log(find)
-                if (find === undefined){
-                    let item = {
-                        itemId: itemId,
-                        itemName: itemName,
-                        itemImage: itemImage,
-                        itemPrice: itemPrice,
-                        itemQty: this.quantity,
-                        subTotal: subTotal
-                    };
-                    list.push(item);
-                }else{
-                    find.itemQty += this.quantity;
-                    find.subTotal += subTotal;
-                }
-            }else{
-                let item = {
-                    itemId: itemId,
-                    itemName: itemName,
-                    itemImage: itemImage,
-                    itemPrice: itemPrice,
-                    itemQty: this.quantity,
-                    subTotal: subTotal
-                };
-                list.push(item);
-            }
 
-            localStorage.setItem('itemList', JSON.stringify(list));
-            this.alertService.success(itemName + 'added to cart', this.options);
-        } catch (e) {
-            this.alertService.warn('Something went wrong', this.options)
-        }
+       if (this.authService.loggedIn()) {
+
+           try {
+               let subTotal = itemPrice * this.quantity;
+               let list = JSON.parse(localStorage.getItem('itemList'));
+               if (list.length > 0) {
+                   let find = list.find(name => name.itemId === itemId);
+                   console.log(find)
+                   if (find === undefined) {
+                       let item = {
+                           itemId: itemId,
+                           itemName: itemName,
+                           itemImage: itemImage,
+                           itemPrice: itemPrice,
+                           itemQty: this.quantity,
+                           subTotal: subTotal
+                       };
+                       list.push(item);
+                   } else {
+                       find.itemQty += this.quantity;
+                       find.subTotal += subTotal;
+                   }
+               } else {
+                   let item = {
+                       itemId: itemId,
+                       itemName: itemName,
+                       itemImage: itemImage,
+                       itemPrice: itemPrice,
+                       itemQty: this.quantity,
+                       subTotal: subTotal
+                   };
+                   list.push(item);
+               }
+
+               localStorage.setItem('itemList', JSON.stringify(list));
+               this.alertService.success(itemName + 'added to cart', this.options);
+           } catch (e) {
+               this.alertService.warn('Something went wrong', this.options)
+           }
+       }else {
+            this.ntService.notify('error','Please login to the system to continue this process.')
+       }
+    }
+
+    openCategoryPage(category){
+        this.router.navigate(['/products'],{queryParams:{id:category['id'],name:category['name']}});
     }
 
 }

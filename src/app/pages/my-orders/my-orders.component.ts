@@ -21,7 +21,10 @@ export class MyOrdersComponent implements OnInit {
 
 
     getAllOrders() {
-        this.orderService.getAllOrders().subscribe(
+
+        let userId = localStorage.getItem('loggedUserId');
+
+        this.orderService.getAllOrders(userId).subscribe(
             res => {
                 if (res['success']) {
                     this.orders = res['body'];

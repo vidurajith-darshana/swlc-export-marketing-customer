@@ -29,6 +29,7 @@ import { CustomerComplainsComponent } from './pages/customer-complains/customer-
 import {NgProgressModule} from 'ngx-progressbar';
 import {NgProgressHttpModule} from 'ngx-progressbar/http';
 import {MyOrdersComponent} from './pages/my-orders/my-orders.component';
+import {NotifierModule} from 'angular-notifier';
 
 // import { ForgetpasswordComponent } from './pages/forgetpassword/forgetpassword.component';
 
@@ -48,6 +49,7 @@ import {MyOrdersComponent} from './pages/my-orders/my-orders.component';
             color: "black"
         }),
         NgProgressHttpModule,
+        NotifierModule,
 
 
     ],

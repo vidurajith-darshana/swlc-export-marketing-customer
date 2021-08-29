@@ -50,7 +50,7 @@ export class OrderService {
   }
 
 
-  public getAllOrders():Observable<any>{
+  public getAllOrders(customerId:string):Observable<any>{
 
     let details = JSON.parse(localStorage.getItem('token'));
 
@@ -62,6 +62,6 @@ export class OrderService {
           'Content-Type': 'application/json'
         });
 
-    return this.httpClient.get<any>(constants.base_url+"api/order/getAll",{headers: headers});
+    return this.httpClient.get<any>(constants.base_url+"api/order/customer/"+customerId,{headers: headers});
   }
 }
