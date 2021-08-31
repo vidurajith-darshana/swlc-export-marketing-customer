@@ -7,6 +7,8 @@ import {AlertService} from '../_alert';
 import {Router} from '@angular/router';
 import {AuthenticateService} from '../service/common-services/authenticate.service';
 import {NotifierService} from 'angular-notifier';
+import {PromotionService} from '../service/customer-web-services/promotion.service';
+import {Promotion} from '../model/promotion';
 
 @Component({
     selector: 'app-categories',
@@ -18,6 +20,9 @@ export class CategoriesComponent implements OnInit {
     categoryName = 'Angular ' + VERSION.major;
 
     private categoryList: Category[];
+    private promotionList: Promotion[];
+    private promotionListf: Promotion[];
+    private promotionLista: Promotion[];
 
     private productList: Product[];
 
@@ -39,7 +44,8 @@ export class CategoriesComponent implements OnInit {
         private productService: ProductService,
         private router: Router,
         private authService: AuthenticateService,
-        private ntService: NotifierService
+        private ntService: NotifierService,
+    private promotionService: PromotionService
     ) {
 
 
@@ -53,9 +59,27 @@ export class CategoriesComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAllCategoryList();
+        this.getAllPromotionList();
         this.getProductList(0);
     }
 
+    private getAllPromotionList() {
+            this.promotionService.getAllPromotions().subscribe(
+            (data: Object[]) => {
+
+                // this.promotionLista = data['body'].content[0];
+                this.promotionListf = data['body'].content[0];
+                data['body'].content.shift()
+                this.promotionList = data['body'].content;
+                console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+                console.log(data);
+                console.log(this.promotionListf);
+                console.log(this.promotionList);
+                console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+            },
+            error => {
+            });
+    }
     private getAllCategoryList() {
         this.categoryService.getAllCategory().subscribe(
             (data: Object[]) => {
@@ -79,6 +103,8 @@ export class CategoriesComponent implements OnInit {
     private _addToCartByHome(itemId, itemName, itemImage, itemPrice) {
 
         if (this.authService.loggedIn()) {
+            if (this.quantity > 0){
+
 
             try {
                 let subTotal = itemPrice * this.quantity;
@@ -120,7 +146,9 @@ export class CategoriesComponent implements OnInit {
         } else {
             this.ntService.notify('error', 'Please login to the system to continue this process.');
         }
-    }
+    }else{
+    this.alertService.warn('Quantity must be greater than 0', this.options);
+
 
     openCategoryPage(category) {
         this.router.navigate(['/products'], {queryParams: {id: category['id'], name: category['name']}});
