@@ -93,12 +93,11 @@
 
 
 <h1 class="best-product">Most Popular Products</h1>
-<div class="row">
-    <div class="col-1"></div>
-    <div class="col-xl-10 mb-5 mb-xl-0">
-        <div class="card-columns">
-            <div *ngFor="let products of productList" class="card">
-                <div class="product-img"><img src={{products.productThumbnail}} class="card-img-top"
+<div class="row m-10px">
+    <div class="col-xl-3 mb-5 mb-xl-0" *ngFor="let products of productList | paginate: config">
+        <div class="card-columns new-card">
+            <div  class="card">
+                <div class="product-img"><img [src]="products['thumbnail']" class="card-img-top"
                                               alt="products images "></div>
                 <div class="card-body">
                     <h2 class="card-title">{{products.name}}</h2>
@@ -108,6 +107,17 @@
                             [attr.data-target]="'#myModal'+ products.code">
                         Add To Cart
                     </button>
+
+
+                    <div class="like-button" (click)="onClickLike(products)">
+                        <div class="like-count-outer-div">
+                            <i [ngClass]="{'press' : products['userLiked']}"> </i>
+                            <div class="like-count-div">{{products['likeCount']}}</div>
+                        </div>
+
+                        <span [ngClass]="{'press' : products['userLiked']}" >liked!</span>
+                    </div>
+
                 </div>
                 <div class="modal" #addModel id="myModal{{products.code}}">
                     <div class="modal-dialog">
@@ -145,6 +155,12 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<div class="products-pagination">
+    <pagination-controls (pageChange)="pageChange($event)" ></pagination-controls>
+    <!--                    <pagination-controls (pageChange)="this.config.currentPage = $event"></pagination-controls>-->
 </div>
      
           

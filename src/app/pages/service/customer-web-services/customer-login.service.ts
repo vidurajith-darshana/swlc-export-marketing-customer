@@ -51,6 +51,7 @@ export class CustomerLoginService {
     public saveToken(data) {
         // window.sessionStorage.setItem('token', );
         localStorage.setItem('token', JSON.stringify(data));
+        localStorage.setItem('access_token', data['access_token']);
     }
 
     public checkCredentials() {

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {constants} from '../../../constants/constants';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -17,8 +18,8 @@ export class ProductService {
         return this.httpClient.get(url);
     }
 
-    public _getAllProducts(pageNo){
-        let url = `${constants.base_url + 'api/v1/user/product/all?page='+pageNo+'&size=10'}`;
+    public _getAllProducts(pageNo,size){
+        let url = `${constants.base_url + 'api/v1/user/product/all?page='+pageNo+'&size='+size+''}`;
         return this.httpClient.get(url);
     }
 
@@ -33,4 +34,16 @@ export class ProductService {
         let url = `${constants.base_url + 'api/v1/user/product/request-details'}`;
         return this.httpClient.post(url,feedbackUiModel);
     }
+
+    public addProductLike(productId : number, like : string):Observable<any>{
+
+        let token = localStorage.getItem('access_token');
+        const headers =
+            new HttpHeaders({
+                'Authorization': 'Bearer ' + token
+            });
+
+        return this.httpClient.patch(constants.base_url + 'api/v1/user/product/like?product='+productId+'&like='+like+'','',{headers:headers});
+    }
+
 }

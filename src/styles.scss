@@ -2,16 +2,70 @@
 @import "~angular-notifier/styles";
 
 .ngx-pagination .current {
-    background: #ee6322 !important;
+  background: #ee6322 !important;
 }
 
-.modal-content{
-    width: max-content!important;
+.modal-content {
+  width: max-content !important;
 }
 
-@media (min-width: 576px){
-    .modal-dialog {
-        max-width: max-content!important;
-    }
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: max-content !important;
+  }
+}
+
+.card-img-top {
+  border-top-left-radius: calc(0.375rem - 1px) !important;
+  border-top-right-radius: calc(0.375rem - 1px) !important;
+  width: 150px !important;
+  height: 150px !important;
+  object-fit: cover;
+  border-radius: 0.5rem !important;
+  border-color: red;
+  border: solid 2px red !important;
+  margin-top: 2rem;
+}
+
+.ngx-pagination a, .ngx-pagination button {
+  cursor: pointer !important;
+  color: #f5365c !important;
+  background: #f5365c1f !important;
+  border-radius: 0.35rem !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+  margin-left: 5px !important;
+  padding: 7px 12px !important;
+}
+
+.ngx-pagination .disabled {
+  cursor: pointer !important;
+  color: #afa8a9 !important;
+  background: #a2a2a21f !important;
+  border-radius: 0.35rem !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+  margin-left: 5px !important;
+  padding: 7px 12px !important;
+}
+
+.ngx-pagination .current {
+  cursor: pointer !important;
+  color: white !important;
+  background: #f5365c !important;
+  border-radius: 0.35rem !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+  margin-left: 5px !important;
+  padding: 7px 12px !important;
+}
+
+
+//.container-fluid{
+//  background: #f7fafc!important;
+//}
+
+.footer {
+  background: white!important;
 }
 

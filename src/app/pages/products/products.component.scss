@@ -25,7 +25,12 @@
 }
 
 .popup-image {
-  width: 120%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.65rem;
+  border-color: red;
+  border: solid 2px red!important;
 }
 
 .product-Name-popup {
@@ -71,4 +76,9 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: 2rem;
+}
+
+.modal-content{
+  width: 500px!important;
+  height: 400px;
 }

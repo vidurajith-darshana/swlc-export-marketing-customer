@@ -1,5 +1,5 @@
 .header-body {
-  margin-top: 8%;
+  margin-top: 4%;
 }
 
 .card-columns {
@@ -168,7 +168,7 @@ body {
   padding-bottom: 3%;
   color: rgb(207, 43, 43);
   font-weight: 900;
-  margin-top: 15%;
+  margin-top: 3%;
 }
 
 .card {
@@ -194,7 +194,6 @@ body {
 }
 
 .products-pagination {
-  padding-top: 8%;
   text-align: center;
 }
 
@@ -238,3 +237,119 @@ body {
     column-count: 1;
   }
 }
+
+.popup-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.65rem;
+  border-color: red;
+  border: solid 2px red !important;
+}
+
+
+.modal-content {
+  width: 500px !important;
+  height: 400px;
+}
+
+.new-card {
+  column-count: 1 !important;
+}
+
+
+.m-10px {
+  margin: 10px !important;
+}
+
+.like-button {
+
+  margin-top: 15px;
+
+  i {
+    cursor: pointer;
+    padding: 10px 5px 8px!important;
+    background: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0 15px;
+    color: #aaa;
+    transition: .2s;
+    font-size: 20px;
+  }
+
+  i:hover {
+    color: #666;
+  }
+
+  i:before {
+    font-family: fontawesome;
+    content: '\f004';
+    font-style: normal;
+  }
+
+  span {
+    position: absolute;
+    bottom: 70px;
+    left: -7px!important;
+    right: 0;
+    visibility: hidden;
+    transition: .6s;
+    z-index: 99999;
+    font-size: 2px;
+    color: transparent;
+    font-weight: bold;
+  }
+
+  i.press {
+    color: #e23b3b;
+  }
+
+  span.press {
+    bottom: 80px;
+    font-size: 14px;
+    visibility: visible;
+    animation: fade 1s;
+  }
+
+  @keyframes fade {
+    0% {
+      color: #transparent;
+    }
+    50% {
+      color: #e23b3b;
+    }
+    100% {
+      color: #transparent;
+    }
+  }
+
+  @keyframes size {
+    0% {
+      padding: 10px 12px 8px;
+    }
+    50% {
+      padding: 14px 16px 12px;
+      margin-top: -4px;
+    }
+    100% {
+      padding: 10px 12px 8px;
+    }
+
+  }
+}
+
+.like-count-outer-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  align-self: center;
+
+  .like-count-div{
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+

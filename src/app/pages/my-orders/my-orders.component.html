@@ -34,10 +34,12 @@
                                 {{order['status']}}
                             </td>
                             <td>
-                                {{order['total'] | currency:'LKR'}}
+                                {{order['total'] | currency}}
                             </td>
                             <td>
-                                <button type="button" class="btn btn-default" (click)="open(content,order['fkOrder'])">View Order Details</button>
+                                <button type="button" class="btn btn-default" (click)="open(content,order['fkOrder'])">
+                                    View Order Details
+                                </button>
                             </td>
 
                         </tr>
@@ -62,6 +64,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+
 
     <div class="modal-body">
         <div class="row">
@@ -101,7 +104,7 @@
                                     {{orderDetail['qty']}}
                                 </td>
                                 <td>
-                                    {{orderDetail['subTotal'] | currency:'LKR'}}
+                                    {{orderDetail['subTotal'] | currency}}
                                 </td>
 
 

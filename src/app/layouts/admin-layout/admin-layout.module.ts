@@ -14,6 +14,7 @@ import {UserProfileComponent} from '../../pages/user-profile/user-profile.compon
 import {TablesComponent} from '../../pages/tables/tables.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {CategoriesComponent} from 'src/app/pages/categories/categories.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -24,7 +25,8 @@ import {CategoriesComponent} from 'src/app/pages/categories/categories.component
         FormsModule,
         HttpClientModule,
         NgbModule,
-        ClipboardModule
+        ClipboardModule,
+        NgxPaginationModule
     ],
     declarations: [
         DashboardComponent,
