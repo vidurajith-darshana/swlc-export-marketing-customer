@@ -42,7 +42,7 @@
                             <label for="e3xampleFormControlInput13">Name</label>
                             <input type="text" placeholder="Regular" id="e3xampleFormControlInput13"
                                    class="form-control tf-background"
-                            [(ngModel)]="feedbackUiModel.customerName"
+                                   [(ngModel)]="feedbackUiModel.customerName"
                                    [ngModelOptions]="{standalone: true}">
                         </div>
                     </div>
@@ -51,19 +51,32 @@
                             <label for="e3xampleFormControlInput1">Email</label>
                             <input type="email" class="form-control tf-background" id="e3xampleFormControlInput1"
                                    placeholder="name@example.com"
+                                   #emailaddress="ngModel"
+                                   pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}"
                                    [(ngModel)]="feedbackUiModel.email"
                                    [ngModelOptions]="{standalone: true}">
+                            <div *ngIf="emailaddress.errors && (emailaddress.dirty || emailaddress.touched || clicked)"
+                                 class="notification-validation-error-label">
+                                <div [hidden]="!emailaddress.errors.pattern">
+                                    Invalid Email Address
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="exampleFormControlTextarea12">Description</label>
-                            <textarea class="form-control tf-background" id="exampleFormControlTextarea12" rows="3" [ngModelOptions]="{standalone: true}"
-                                      placeholder="Write a Description here ..." [(ngModel)]="feedbackUiModel.description"></textarea>
+                            <textarea class="form-control tf-background" id="exampleFormControlTextarea12" rows="3"
+                                      [ngModelOptions]="{standalone: true}"
+                                      placeholder="Write a Description here ..."
+                                      [(ngModel)]="feedbackUiModel.description"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-outline-danger btn-lg" (click)="requestProductDetails()">Send Your Feedback</button>
+                        <button type="button" class="btn btn-outline-danger btn-lg" (click)="requestProductDetails()">
+                            Send Your Feedback
+                        </button>
                     </div>
                 </div>
             </form>
