@@ -22,6 +22,7 @@ export class CategoriesComponent implements OnInit {
     private promotionListf: Promotion[];
     private promotionListfid = 0;
     private promotionListfim ='';
+    private promotionListfhe ='';
     private promotionListfde ='';
     private promotionLista: Promotion[];
 
@@ -62,6 +63,9 @@ export class CategoriesComponent implements OnInit {
                 this.promotionListf = data['body'].content[0];
                 if (data['body'].content.length > 0) {
 
+                    if (data['body'].content[0].heading) {
+                        this.promotionListfhe = data['body'].content[0].heading;
+                    }
                     if (data['body'].content[0].id) {
                         this.promotionListfid = data['body'].content[0].id;
                     }
