@@ -1,24 +1,33 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {OrderService} from '../service/customer-web-services/order.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {UserService} from '../service/common-services/user.service';
+import {fromEvent} from 'rxjs';
+import {debounceTime, distinctUntilChanged, filter, map} from 'rxjs/operators';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
     selector: 'app-tables',
     templateUrl: './promotions.component.html',
     styleUrls: ['./promotions.component.scss']
 })
-export class PromotionsComponent implements OnInit {
+export class PromotionsComponent implements OnInit, AfterViewInit {
+
+    @ViewChild('searchElement', {static: true}) searchElement: ElementRef;
 
     promotions: Array<any> = [];
     comments: Array<any> = [];
-
     config: any;
+    searchWord: string = '';
+    maxChars: number = 250;
+    comment: string = '';
+    openedPromotion: any;
+    addNewModelReference: any;
 
-    constructor(private userService: UserService, private modalService: NgbModal) {
+    constructor(private userService: UserService, private modalService: NgbModal, private ntService: NotifierService) {
 
         this.config = {
-            itemsPerPage: 10,
+            itemsPerPage: 5,
             currentPage: 0,
             totalItems: 0
         };
@@ -26,21 +35,22 @@ export class PromotionsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getAllOrders(0);
+        this.getAllPromotions(0);
     }
 
 
-    getAllOrders(pageNo) {
+    getAllPromotions(pageNo) {
 
-        this.userService.getAllPromotions(pageNo, this.config.itemsPerPage).subscribe(
+        this.userService.getAllPromotions(pageNo, this.config.itemsPerPage, this.searchWord).subscribe(
             res => {
                 if (res['success']) {
                     this.promotions = res['body']['content'];
+                    this.config.totalItems = res['body']['totalElements'];
                 } else {
-                    alert('Something went wrong. Please try again!');
+                    this.ntService.notify('error', 'Something went wrong. Please try again!');
                 }
             }, error => {
-                alert('Something went wrong. Please try again!');
+                this.ntService.notify('error', 'Something went wrong. Please try again!');
             }
         );
     }
@@ -60,16 +70,63 @@ export class PromotionsComponent implements OnInit {
         this.userService.addPromotionLike(promotion['id'], likeStatus).subscribe(
             res => {
                 if (res['success']) {
-                    this.getAllOrders(this.config.currentPage - 1);
+                    this.getAllPromotions(this.config.currentPage - 1);
+                } else {
+                    this.ntService.notify('error', 'Something went wrong. Please try again!');
                 }
+            }, error => {
+                this.ntService.notify('error', 'Something went wrong. Please try again!');
             }
         );
     }
 
     pageChange(event) {
         this.config.currentPage = event;
-        this.getAllOrders(event - 1);
+        this.getAllPromotions(event - 1);
     }
 
+    ngAfterViewInit(): void {
+
+        fromEvent(this.searchElement.nativeElement, 'keyup').pipe(
+            // get value
+            map((event: any) => {
+
+                if (event.target.value.length == 0) {
+                    this.getAllPromotions(0);
+                }
+                return event.target.value;
+            })
+
+            , filter(res => res.length > 1)
+
+            , debounceTime(1000)
+
+            , distinctUntilChanged()
+        ).subscribe((text: string) => {
+            this.getAllPromotions(0);
+        });
+
+    }
+
+    openAddNewComment(content, promotion) {
+        this.openedPromotion = promotion;
+        this.addNewModelReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
+    }
+
+    addNewComment() {
+
+        this.userService.addPromotionComment(this.openedPromotion['id'], this.comment).subscribe(
+            res => {
+                this.addNewModelReference.close();
+                if (res['success']) {
+                    this.ntService.notify('success', 'Your comment has been successfully saved. Thank you!');
+                } else {
+                    this.ntService.notify('error', 'Something went wrong. Please try again!');
+                }
+            }, error => {
+                this.ntService.notify('error', 'Something went wrong. Please try again!');
+            }
+        );
+    }
 
 }

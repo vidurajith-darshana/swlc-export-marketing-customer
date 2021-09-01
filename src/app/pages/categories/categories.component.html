@@ -9,9 +9,9 @@
                 <!--                </div>-->
                 <div class="carousel-item active">
                     <a (click)="openPromotionsPage()">
-                        <h3 style="color: #f9f9f9;font-weight: bold;font-size: 28px;line-height: 28px;margin: auto;display: flex;justify-content: center;margin-bottom: 8px;text-decoration: underline;">{{promotionListf.heading}}</h3>
-                        <img style="width:100%;max-height: 400px;" class="d-block w-100" src="{{promotionListf.image}}" alt="Second slide">
-                        <p style="position: absolute;top: 50px;padding: 0 50px;color: black;">{{promotionListf.description}}</p>
+<!--                        <h3 style="color: #f9f9f9;font-weight: bold;font-size: 28px;line-height: 28px;margin: auto;display: flex;justify-content: center;margin-bottom: 8px;text-decoration: underline;">{{promotionListf.heading}}</h3>-->
+<!--                        <img style="width:100%;max-height: 400px;" class="d-block w-100" src="{{promotionListf.image}}" alt="Second slide">-->
+<!--                        <p style="position: absolute;top: 50px;padding: 0 50px;color: black;">{{promotionListf.description}}</p>-->
                     </a>
                 </div>
                 <div *ngFor=" let promotions of promotionList " class="carousel-item">
@@ -124,7 +124,7 @@
 </div>
 
 
-<h1 class="best-product">Most Popular Products</h1>
+<h1 class="best-product">All Products</h1>
 <div class="row m-10px">
     <div class="col-xl-3 mb-5 mb-xl-0" *ngFor="let products of productList | paginate: config">
         <div class="card-columns new-card">
@@ -165,7 +165,7 @@
                                      <div class="col-5"><img class="popup-image" src="{{products.thumbnail}}"></div>
                                     <div class="col-7">
                                         <div class="product-Name-popup">{{products.name}}</div>
-                                        <div class="product-price-popup">{{products.price}}</div>
+                                        <div class="product-price-popup"> <h1>{{products.price | currency}}</h1> </div>
                                         <div><span class="product-qty-popup">QTY</span><input [(ngModel)]="quantity" name="quantity" type="number" value="1"
                                                                                               min="1" max="1000"/></div>
                                     </div>

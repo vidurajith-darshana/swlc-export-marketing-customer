@@ -95,9 +95,11 @@ export class CategoriesComponent implements OnInit {
             if (data['success']) {
                 this.productList = data['body'].content;
                 this.config.totalItems = data['body']['totalElements'];
+            }else{
+                this.ntService.notify('error','Something went wrong. Please try again!');
             }
         }, error => {
-
+            this.ntService.notify('error','Something went wrong. Please try again!');
         });
     }
 
@@ -172,7 +174,11 @@ export class CategoriesComponent implements OnInit {
                 res => {
                     if (res['success']) {
                         this.getProductList(this.config.currentPage - 1);
+                    }else{
+                        this.ntService.notify('error','Something went wrong. Please try again!');
                     }
+                },error => {
+                    this.ntService.notify('error','Something went wrong. Please try again!');
                 }
             );
         }else{

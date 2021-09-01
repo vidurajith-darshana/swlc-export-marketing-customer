@@ -33,7 +33,7 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'feedback', canActivate:[AuthGuard], component: FeedbackComponent},
     {path: 'forget_Password',  component:ForgetpasswordComponent},
     {path: 'my-orders', canActivate:[AuthGuard], component:MyOrdersComponent},
-    {path: 'customer-complains', canActivate:[AuthGuard], component:CustomerComplainsComponent},
+    {path: 'customer-complains', component:CustomerComplainsComponent},
     {path: 'promotions', canActivate:[AuthGuard], component:PromotionsComponent}
 
 ];

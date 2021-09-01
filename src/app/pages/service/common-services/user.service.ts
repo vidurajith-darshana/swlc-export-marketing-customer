@@ -33,13 +33,13 @@ export class UserService {
         return this.httpClient.post(url, data);
     }
 
-    public getAllPromotions(page:number,size:number):Observable<any>{
+    public getAllPromotions(page:number,size:number,searchKeyword:string):Observable<any>{
         let token = localStorage.getItem('access_token');
         const headers =
             new HttpHeaders({
                 'Authorization': 'Bearer ' + token
             });
-        return this.httpClient.get(constants.base_url +'api/v1/user/promotion/all?page='+page+'&size='+size+'',{headers:headers});
+        return this.httpClient.get(constants.base_url +'api/v1/user/promotion/all?page='+page+'&size='+size+'&search='+searchKeyword+'',{headers:headers});
     }
 
     public addPromotionLike(promotionId : number, like : string):Observable<any>{
@@ -51,6 +51,17 @@ export class UserService {
             });
 
         return this.httpClient.patch(constants.base_url + 'api/v1/user/promotion/like?promotion='+promotionId+'&status='+like+'','',{headers:headers});
+    }
+
+    public addPromotionComment(promotionId : number, comment : string):Observable<any>{
+
+        let token = localStorage.getItem('access_token');
+        const headers =
+            new HttpHeaders({
+                'Authorization': 'Bearer ' + token
+            });
+
+        return this.httpClient.patch(constants.base_url + 'api/v1/user/promotion/comment?id='+promotionId+'&comment='+comment+'','',{headers:headers});
     }
 
 }
