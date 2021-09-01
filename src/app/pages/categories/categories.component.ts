@@ -20,6 +20,9 @@ export class CategoriesComponent implements OnInit {
     private categoryList: Category[];
     private promotionList: Promotion[];
     private promotionListf: Promotion[];
+    private promotionListfid = 0;
+    private promotionListfim ='';
+    private promotionListfde ='';
     private promotionLista: Promotion[];
 
     private productList : Product[];
@@ -48,20 +51,33 @@ export class CategoriesComponent implements OnInit {
     }
 
     private getAllPromotionList() {
-            this.promotionService.getAllPromotions().subscribe(
+        console.log('ddddddddddddd');
+
+        this.promotionService.getAllPromotions().subscribe(
             (data: Object[]) => {
+                console.log(data);
+                console.log('sssssssssssssssssss');
 
                 // this.promotionLista = data['body'].content[0];
                 this.promotionListf = data['body'].content[0];
+                if (data['body'].content.length > 0) {
+
+                    if (data['body'].content[0].id) {
+                        this.promotionListfid = data['body'].content[0].id;
+                    }
+                    if (data['body'].content[0].image) {
+                        this.promotionListfim = data['body'].content[0].image;
+                    }
+                    if (data['body'].content[0].description) {
+                        this.promotionListfde = data['body'].content[0].description;
+                    }
+                }
                 data['body'].content.shift()
                 this.promotionList = data['body'].content;
-                console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-                console.log(data);
-                console.log(this.promotionListf);
-                console.log(this.promotionList);
-                console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+
             },
             error => {
+                console.log('aaaaaaaaaaaaaaaaaaaaa');
             });
     }
     private getAllCategoryList() {
