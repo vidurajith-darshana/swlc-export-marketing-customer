@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {constants} from '../../../constants/constants';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -31,4 +32,25 @@ export class UserService {
         let url = `${constants.base_url + 'api/v1/user/customer/reset-password'}`;
         return this.httpClient.post(url, data);
     }
+
+    public getAllPromotions(page:number,size:number):Observable<any>{
+        let token = localStorage.getItem('access_token');
+        const headers =
+            new HttpHeaders({
+                'Authorization': 'Bearer ' + token
+            });
+        return this.httpClient.get(constants.base_url +'api/v1/user/promotion/all?page='+page+'&size='+size+'',{headers:headers});
+    }
+
+    public addPromotionLike(promotionId : number, like : string):Observable<any>{
+
+        let token = localStorage.getItem('access_token');
+        const headers =
+            new HttpHeaders({
+                'Authorization': 'Bearer ' + token
+            });
+
+        return this.httpClient.patch(constants.base_url + 'api/v1/user/promotion/like?promotion='+promotionId+'&status='+like+'','',{headers:headers});
+    }
+
 }

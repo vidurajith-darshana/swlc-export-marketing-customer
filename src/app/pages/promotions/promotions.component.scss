@@ -1,0 +1,104 @@
+.product-image{
+  height: 120px;
+  border-radius: 0.65rem;
+  border: 2px solid #e23b3b!important;
+}
+
+.like-button {
+
+  margin-top: 15px;
+
+  i {
+    cursor: pointer;
+    padding: 10px 5px 8px!important;
+    background: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 0 15px;
+    color: #aaa;
+    transition: .2s;
+    font-size: 20px;
+  }
+
+  i:hover {
+    color: #666;
+  }
+
+  i:before {
+    font-family: fontawesome;
+    content: '\f004';
+    font-style: normal;
+  }
+
+  span {
+    position: absolute;
+    bottom: 70px;
+    left: -7px!important;
+    right: 0;
+    visibility: hidden;
+    transition: .6s;
+    z-index: 99999;
+    font-size: 2px;
+    color: transparent;
+    font-weight: bold;
+  }
+
+  i.press {
+    color: #e23b3b;
+  }
+
+  span.press {
+    bottom: 80px;
+    font-size: 14px;
+    visibility: visible;
+    animation: fade 1s;
+  }
+
+  @keyframes fade {
+    0% {
+      color: #transparent;
+    }
+    50% {
+      color: #e23b3b;
+    }
+    100% {
+      color: #transparent;
+    }
+  }
+
+  @keyframes size {
+    0% {
+      padding: 10px 12px 8px;
+    }
+    50% {
+      padding: 14px 16px 12px;
+      margin-top: -4px;
+    }
+    100% {
+      padding: 10px 12px 8px;
+    }
+
+  }
+}
+
+.like-count-outer-div{
+  display: flex;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+
+  .like-count-div{
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+}
+
+.products-pagination{
+  text-align: center!important;
+}
+
+
+
+
+

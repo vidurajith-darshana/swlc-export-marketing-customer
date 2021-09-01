@@ -16,6 +16,7 @@ import {CustomerComplainsComponent} from '../../pages/customer-complains/custome
 import {AuthGuard} from '../../guards/auth.guard';
 import {CustomerLoginComponent} from '../../pages/customer-login/customer-login.component';
 import {RegisterCustomerComponent} from '../../pages/register-customer/register-customer.component';
+import {PromotionsComponent} from '../../pages/promotions/promotions.component';
 
 
 export const AdminLayoutRoutes: Routes = [
@@ -32,6 +33,7 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'feedback', canActivate:[AuthGuard], component: FeedbackComponent},
     {path: 'forget_Password',  component:ForgetpasswordComponent},
     {path: 'my-orders', canActivate:[AuthGuard], component:MyOrdersComponent},
-    {path: 'customer-complains', canActivate:[AuthGuard], component:CustomerComplainsComponent}
+    {path: 'customer-complains', canActivate:[AuthGuard], component:CustomerComplainsComponent},
+    {path: 'promotions', canActivate:[AuthGuard], component:PromotionsComponent}
 
 ];

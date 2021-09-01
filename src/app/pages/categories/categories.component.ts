@@ -45,7 +45,7 @@ export class CategoriesComponent implements OnInit {
         private router: Router,
         private authService: AuthenticateService,
         private ntService: NotifierService,
-    private promotionService: PromotionService
+        private promotionService: PromotionService
     ) {
 
 
@@ -64,12 +64,12 @@ export class CategoriesComponent implements OnInit {
     }
 
     private getAllPromotionList() {
-            this.promotionService.getAllPromotions().subscribe(
+        this.promotionService.getAllPromotions().subscribe(
             (data: Object[]) => {
 
                 // this.promotionLista = data['body'].content[0];
                 this.promotionListf = data['body'].content[0];
-                data['body'].content.shift()
+                data['body'].content.shift();
                 this.promotionList = data['body'].content;
                 console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
                 console.log(data);
@@ -80,6 +80,7 @@ export class CategoriesComponent implements OnInit {
             error => {
             });
     }
+
     private getAllCategoryList() {
         this.categoryService.getAllCategory().subscribe(
             (data: Object[]) => {
@@ -103,16 +104,30 @@ export class CategoriesComponent implements OnInit {
     private _addToCartByHome(itemId, itemName, itemImage, itemPrice) {
 
         if (this.authService.loggedIn()) {
-            if (this.quantity > 0){
+            if (this.quantity > 0) {
 
 
-            try {
-                let subTotal = itemPrice * this.quantity;
-                let list = JSON.parse(localStorage.getItem('itemList'));
-                if (list.length > 0) {
-                    let find = list.find(name => name.itemId === itemId);
-                    console.log(find);
-                    if (find === undefined) {
+                try {
+                    let subTotal = itemPrice * this.quantity;
+                    let list = JSON.parse(localStorage.getItem('itemList'));
+                    if (list.length > 0) {
+                        let find = list.find(name => name.itemId === itemId);
+                        console.log(find);
+                        if (find === undefined) {
+                            let item = {
+                                itemId: itemId,
+                                itemName: itemName,
+                                itemImage: itemImage,
+                                itemPrice: itemPrice,
+                                itemQty: this.quantity,
+                                subTotal: subTotal
+                            };
+                            list.push(item);
+                        } else {
+                            find.itemQty += this.quantity;
+                            find.subTotal += subTotal;
+                        }
+                    } else {
                         let item = {
                             itemId: itemId,
                             itemName: itemName,
@@ -122,32 +137,21 @@ export class CategoriesComponent implements OnInit {
                             subTotal: subTotal
                         };
                         list.push(item);
-                    } else {
-                        find.itemQty += this.quantity;
-                        find.subTotal += subTotal;
                     }
-                } else {
-                    let item = {
-                        itemId: itemId,
-                        itemName: itemName,
-                        itemImage: itemImage,
-                        itemPrice: itemPrice,
-                        itemQty: this.quantity,
-                        subTotal: subTotal
-                    };
-                    list.push(item);
-                }
 
-                localStorage.setItem('itemList', JSON.stringify(list));
-                this.alertService.success(itemName + 'added to cart', this.options);
-            } catch (e) {
-                this.alertService.warn('Something went wrong', this.options);
+                    localStorage.setItem('itemList', JSON.stringify(list));
+                    this.alertService.success(itemName + 'added to cart', this.options);
+                } catch (e) {
+                    this.alertService.warn('Something went wrong', this.options);
+                }
+            } else {
+                this.ntService.notify('error', 'Quantity must be greater than 0');
+
             }
         } else {
             this.ntService.notify('error', 'Please login to the system to continue this process.');
         }
-    }else{
-    this.alertService.warn('Quantity must be greater than 0', this.options);
+    }
 
 
     openCategoryPage(category) {
@@ -156,25 +160,33 @@ export class CategoriesComponent implements OnInit {
 
 
     onClickLike(product) {
-        product['userLiked'] = !product['userLiked'];
 
-        let likeStatus = '';
-        likeStatus = product['userLiked'] ? 'LIKE' : 'REMOVE';
+        if(this.authService.loggedIn()) {
 
+            product['userLiked'] = !product['userLiked'];
 
-        this.productService.addProductLike(product['id'], likeStatus).subscribe(
-            res => {
-                if (res['success']) {
-                    this.getProductList(this.config.currentPage - 1);
+            let likeStatus = '';
+            likeStatus = product['userLiked'] ? 'LIKE' : 'REMOVE';
+
+            this.productService.addProductLike(product['id'], likeStatus).subscribe(
+                res => {
+                    if (res['success']) {
+                        this.getProductList(this.config.currentPage - 1);
+                    }
                 }
-            }
-        );
-
+            );
+        }else{
+            this.ntService.notify('error', 'Please login to the system to continue this process.');
+        }
     }
 
     pageChange(event) {
         this.config.currentPage = event;
         this.getProductList(event - 1);
+    }
+
+    openPromotionsPage(){
+        this.router.navigate(['/promotions']);
     }
 
 }
