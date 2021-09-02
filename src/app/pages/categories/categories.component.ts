@@ -51,7 +51,7 @@ export class CategoriesComponent implements OnInit {
 
         this.config = {
             itemsPerPage: 8,
-            currentPage: 0,
+            currentPage: 1,
             totalItems: 0
         };
     };
@@ -166,6 +166,7 @@ export class CategoriesComponent implements OnInit {
         if(this.authService.loggedIn()) {
 
             product['userLiked'] = !product['userLiked'];
+            product['isLiked'] = !!product['userLiked'];
 
             let likeStatus = '';
             likeStatus = product['userLiked'] ? 'LIKE' : 'REMOVE';

@@ -28,7 +28,7 @@ export class PromotionsComponent implements OnInit, AfterViewInit {
 
         this.config = {
             itemsPerPage: 5,
-            currentPage: 0,
+            currentPage: 1,
             totalItems: 0
         };
 
@@ -57,6 +57,8 @@ export class PromotionsComponent implements OnInit, AfterViewInit {
 
     open(content, comments) {
         this.comments = comments;
+
+        console.log(this.comments)
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
     }
 

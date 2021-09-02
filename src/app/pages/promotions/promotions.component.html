@@ -29,6 +29,7 @@
                         <tr>
                             <th scope="col">Create Date</th>
                             <th scope="col">Description</th>
+                            <th scope="col">Heading</th>
                             <th scope="col">Promo Image</th>
                             <th scope="col">Like Count</th>
                             <th scope="col">View All Comments</th>
@@ -44,6 +45,10 @@
                             <td>
                                 {{promotion['description']}}
                             </td>
+
+                            <td>
+                                {{promotion['heading']}}
+                            </td>
                             <td>
                                 <img class="product-image" [src]="promotion['image']" alt="">
                             </td>
@@ -57,7 +62,8 @@
                                 </div>
                             </td>
                             <td>
-                                <button class="btn btn-icon btn-3  btn-default" type="button" (click)="open(content,promotion['commentList'])">
+                                <button class="btn btn-icon btn-3  btn-default" type="button"
+                                        (click)="open(content,promotion['commentList'])">
                                     <span class="btn-inner--icon"><i class="ni ni-books"></i></span>
                                     <span class="btn-inner--text">View All Comments</span>
                                 </button>
@@ -66,7 +72,8 @@
 
 
                             <td>
-                                <button class="btn btn-icon btn-3 btn-success" type="button" (click)="openAddNewComment(addNewCommentModel,promotion)">
+                                <button class="btn btn-icon btn-3 btn-success" type="button"
+                                        (click)="openAddNewComment(addNewCommentModel,promotion)">
                                     <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span>
                                     <span class="btn-inner--text">Add New Comment</span>
                                 </button>
@@ -100,44 +107,39 @@
         <div class="row">
             <div class="col">
                 <div class="card shadow">
-                    <div class="table-responsive">
+
+                    <div class="no-comments" *ngIf="comments.length == 0">There are no comments yet</div>
+
+                    <div class="table-responsive" *ngIf="comments.length > 0">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                             <tr>
+                                <th scope="col">Date</th>
                                 <th scope="col">User Name</th>
                                 <th scope="col">Comment</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <!--                            <tr *ngFor="let orderDetail of orderDetails">-->
+                            <tr *ngFor="let comment of comments">
 
-                            <!--                                <th scope="row">-->
-                            <!--                                    {{orderDetail['product']['id']}}-->
-                            <!--                                </th>-->
+                                <th scope="row">
+                                    {{comment['date'] | date}}
+                                </th>
 
-                            <!--                                <th scope="row">-->
-                            <!--                                    {{orderDetail['product']['name']}}-->
-                            <!--                                </th>-->
+                                <th scope="row">
+                                    {{comment['name']}}
+                                </th>
 
-                            <!--                                <th scope="row">-->
-                            <!--                                    <img class="product-image" [src]="orderDetail['product']['thumbnail']" alt="">-->
-                            <!--                                </th>-->
+                                <td>
+                                    {{comment['comment']}}
+                                </td>
 
-                            <!--                                <td>-->
-                            <!--                                    {{orderDetail['price']}}-->
-                            <!--                                </td>-->
-                            <!--                                <td>-->
-                            <!--                                    {{orderDetail['qty']}}-->
-                            <!--                                </td>-->
-                            <!--                                <td>-->
-                            <!--                                    {{orderDetail['subTotal'] | currency}}-->
-                            <!--                                </td>-->
-
-
-                            <!--                            </tr>-->
+                            </tr>
 
                             </tbody>
+
                         </table>
+
                     </div>
                     <div class="card-footer py-4">
 
@@ -152,7 +154,7 @@
 
 <ng-template #addNewCommentModel let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" >Add New Comment</h4>
+        <h4 class="modal-title">Add New Comment</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -168,11 +170,14 @@
                         <label>Enter your comment</label>
 
                         <textarea [(ngModel)]="comment"
-                                  [maxlength]="maxChars" rows="4" class="form-control form-control-alternative" placeholder="Enter your comment here..."></textarea>
+                                  [maxlength]="maxChars" rows="4" class="form-control form-control-alternative"
+                                  placeholder="Enter your comment here..."></textarea>
 
                         <label class="charter-re"> Characters remaining: {{comment.length}}/{{maxChars}}</label>
 
-                        <button type="button" (click)="addNewComment()" class="btn btn-default btn-lg btn-block add-comment-btn">Submit</button>
+                        <button type="button" (click)="addNewComment()"
+                                class="btn btn-default btn-lg btn-block add-comment-btn">Submit
+                        </button>
                     </div>
 
                 </div>
