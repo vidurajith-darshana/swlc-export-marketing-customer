@@ -21,13 +21,21 @@ export class ProductService {
     public _getAllProducts(pageNo,size){
 
         let token = localStorage.getItem('access_token');
+
         const headers =
             new HttpHeaders({
                 'Authorization': 'Bearer ' + token
             });
 
         let url = `${constants.base_url + 'api/v1/user/product/all?page='+pageNo+'&size='+size+''}`;
-        return this.httpClient.get(url,{headers:headers});
+
+        if (token === null || token === 'null' || token === undefined){
+            return this.httpClient.get(url);
+        }else{
+            return this.httpClient.get(url,{headers:headers});
+        }
+
+
     }
 
     public getAllProducts(){
