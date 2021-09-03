@@ -18,6 +18,7 @@ import {CustomerLoginComponent} from '../../pages/customer-login/customer-login.
 import {RegisterCustomerComponent} from '../../pages/register-customer/register-customer.component';
 import {AdminLoginComponent} from '../../pages/admin-login/admin-login.component';
 import {AdminRegisterComponent} from '../../pages/admin-register/admin-register.component';
+import {ResetPasswordComponent} from "../../pages/reset-password/reset-password.component";
 
 export const AdminLayoutRoutes: Routes = [
 
@@ -37,6 +38,7 @@ export const AdminLayoutRoutes: Routes = [
     {path: 'checkout', canActivate:[AuthGuard], component: CheckoutComponent},
     {path: 'feedback', canActivate:[AuthGuard], component: FeedbackComponent},
     {path: 'forget_Password',  component:ForgetpasswordComponent},
+    {path: 'reset_password',  component:ResetPasswordComponent},
     {path: 'my-orders', canActivate:[AuthGuard], component:MyOrdersComponent},
     {path: 'customer-complains', canActivate:[AuthGuard], component:CustomerComplainsComponent},
 ];

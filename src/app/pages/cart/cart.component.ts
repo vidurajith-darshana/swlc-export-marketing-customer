@@ -103,6 +103,7 @@ export class CartComponent implements OnInit {
                 const itemList = new Array();
                 localStorage.setItem('itemList', JSON.stringify(itemList));
                 this._getAddToCartItems();
+                this.message = '';
             }else {
                 this.alertService.error(data['message'],this.options);
             }
