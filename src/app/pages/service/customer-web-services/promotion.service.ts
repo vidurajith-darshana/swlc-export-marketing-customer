@@ -12,7 +12,7 @@ export class PromotionService {
     }
 
     public getAllPromotions() {
-        let url = `${constants.base_url + 'api/v1/user/promotion/all?page=0&size=50'}`;
+        let url = `${constants.base_url + 'api/v1/user/promotion/all?search=&page=0&size=50'}`;
         console.log(url);
         return this.httpClient.get(url);
     }

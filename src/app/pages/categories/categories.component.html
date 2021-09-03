@@ -9,16 +9,16 @@
                 <!--                </div>-->
                 <div class="carousel-item active">
                     <a (click)="openPromotionsPage()">
-<!--                        <h3 style="color: #f9f9f9;font-weight: bold;font-size: 28px;line-height: 28px;margin: auto;display: flex;justify-content: center;margin-bottom: 8px;text-decoration: underline;">{{promotionListf.heading}}</h3>-->
-<!--                        <img style="width:100%;max-height: 400px;" class="d-block w-100" src="{{promotionListf.image}}" alt="Second slide">-->
-<!--                        <p style="position: absolute;top: 50px;padding: 0 50px;color: black;">{{promotionListf.description}}</p>-->
+                      <h3 style="color: #f9f9f9;font-weight: bold;font-size: 28px;line-height: 28px;margin: auto;display: flex;justify-content: center;margin-bottom: 8px;text-decoration: underline;">{{promotionListfhe}}</h3>
+                        <img style="width:100%;max-height: 400px;" class="d-block w-100" src="{{promotionListfim}}" alt="Second slide">
+                        <p style="position: absolute;top: 50px;padding: 0 50px;color: black;">{{promotionListfde}}</p>
                     </a>
                 </div>
                 <div *ngFor=" let promotions of promotionList " class="carousel-item">
                     <a href="/promotion?id={{promotions.id}}">
-                        <h3>{{promotions.heading}}</h3>
-                        <img class="d-block w-100" src="{{promotions.image}}" alt="Second slide">
-                        <p>{{promotions.description}}</p>
+                        <h3 style="color: #f9f9f9;font-weight: bold;font-size: 28px;line-height: 28px;margin: auto;display: flex;justify-content: center;margin-bottom: 8px;text-decoration: underline;">{{promotions.heading}}</h3>
+                        <img class="d-block w-100" style="width:100%;max-height: 400px;" src="{{promotions.image}}" alt="Second slide">
+                        <p style="position: absolute;top: 50px;padding: 0 50px;color: black;">{{promotions.description}}</p>
                     </a>
                 </div>
                 <!--                <div class="carousel-item">-->

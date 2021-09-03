@@ -31,6 +31,7 @@ import {NgProgressHttpModule} from 'ngx-progressbar/http';
 import {MyOrdersComponent} from './pages/my-orders/my-orders.component';
 import {NotifierModule} from 'angular-notifier';
 import {PromotionsComponent} from './pages/promotions/promotions.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 
 // import { ForgetpasswordComponent } from './pages/forgetpassword/forgetpassword.component';
 
@@ -69,7 +70,8 @@ import {PromotionsComponent} from './pages/promotions/promotions.component';
         ReviewsComponent,
         CustomerComplainsComponent,
         MyOrdersComponent,
-        PromotionsComponent
+        PromotionsComponent,
+        ResetPasswordComponent
         // ForgetpasswordComponent,
     ],
     providers: [],
