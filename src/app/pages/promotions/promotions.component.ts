@@ -111,16 +111,17 @@ export class PromotionsComponent implements OnInit, AfterViewInit {
     }
 
     openAddNewComment(content, promotion) {
+        this.comment = "";
         this.openedPromotion = promotion;
         this.addNewModelReference = this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
     }
 
     addNewComment() {
-
         this.userService.addPromotionComment(this.openedPromotion['id'], this.comment).subscribe(
             res => {
                 this.addNewModelReference.close();
                 if (res['success']) {
+                    this.getAllPromotions(this.config.currentPage - 1);
                     this.ntService.notify('success', 'Your comment has been successfully saved. Thank you!');
                 } else {
                     this.ntService.notify('error', 'Something went wrong. Please try again!');

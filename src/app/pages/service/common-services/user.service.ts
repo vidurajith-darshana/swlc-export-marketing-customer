@@ -61,7 +61,7 @@ export class UserService {
                 'Authorization': 'Bearer ' + token
             });
 
-        return this.httpClient.patch(constants.base_url + 'api/v1/user/promotion/comment?id='+promotionId+'&comment='+comment+'','',{headers:headers});
+        return this.httpClient.patch(constants.base_url + 'api/v1/user/promotion/comment?promotion='+promotionId+'&comment='+comment+'','',{headers:headers});
     }
 
 }

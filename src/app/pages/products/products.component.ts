@@ -120,7 +120,7 @@ export class ProductsComponent implements OnInit {
                     this.alertService.warn('Something went wrong', this.options);
                 }
             } else {
-                this.alertService.warn('Quantity must be greater than 0', this.options);
+                this.ntService.notify('error','Quantity must be greater than 0');
             }
         } else {
             this.ntService.notify('error', 'Please login to the system to continue this process.');
