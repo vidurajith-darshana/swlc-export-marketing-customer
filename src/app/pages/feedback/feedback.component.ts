@@ -21,6 +21,7 @@ export class FeedbackComponent implements OnInit {
         keepAfterRouteChange: false
     };
 
+    clicked: any
     keyword = 'name';
 
     public feedbackUiModel = {
