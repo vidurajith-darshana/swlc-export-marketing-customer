@@ -57,7 +57,7 @@
                                    [ngModelOptions]="{standalone: true}">
                             <div *ngIf="emailaddress.errors && (emailaddress.dirty || emailaddress.touched || clicked)"
                                  class="notification-validation-error-label">
-                                <div [hidden]="!emailaddress.errors.pattern">
+                                <div [hidden]="!emailaddress.errors.pattern" style="color: red">
                                     Invalid Email Address
                                 </div>
                             </div>
