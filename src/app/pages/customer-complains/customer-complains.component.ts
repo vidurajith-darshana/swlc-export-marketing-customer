@@ -13,7 +13,7 @@ export class CustomerComplainsComponent implements OnInit {
 
   complainType : string = '';
   complainComment : string = '';
-  customerType : boolean;
+  customerType : boolean = false;
   userId : any = null;
 
   private options = {
@@ -70,6 +70,10 @@ export class CustomerComplainsComponent implements OnInit {
     }else{
       this.router.navigate(['/customer_Login'])
     }
+  }
+
+  onItemInAnonymousChange(value){
+    this.userId = null;
   }
 
   clearText(){
