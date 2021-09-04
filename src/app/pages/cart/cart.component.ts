@@ -3,6 +3,7 @@ import {CartItems} from '../model/cart-items';
 import {OrderService} from '../service/customer-web-services/order.service';
 import {AlertService} from '../_alert';
 import {Router} from '@angular/router';
+import {NotifierService} from 'angular-notifier';
 
 @Component({
     selector: 'app-cart',
@@ -19,7 +20,8 @@ export class CartComponent implements OnInit {
     constructor(
         private orderService: OrderService,
         protected alertService: AlertService,
-        private router: Router
+        private router: Router,
+        private ntService:NotifierService
     ) {
     }
 
@@ -59,7 +61,7 @@ export class CartComponent implements OnInit {
         let fkUserId = JSON.parse(localStorage.getItem('loggedUserId'));
         this.orderService.saveOrder(fkUserId, this.orderTotalAmount, this.message, 'PENDING').subscribe((data) => {
             if (data['success']) {
-                this.alertService.success('Order Save success', this.options);
+                this.ntService.notify('success','Your order has been successfully placed. Thank you!');
                 const itemList = new Array();
                 localStorage.setItem('itemList', JSON.stringify(itemList));
                 this._getAddToCartItems();

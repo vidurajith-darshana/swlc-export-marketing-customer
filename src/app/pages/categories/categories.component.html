@@ -152,13 +152,17 @@
                     </div>
 
                 </div>
-                <div class="modal" #addModel id="myModal{{products.code}}">
+
+                <div class="modal" id="myModal{{products.code}}">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header" style="padding: 0.5rem;">
-                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                               <button type="button" #closeBtn class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
+
+
                               </div>
                             <!-- Modal body -->
                             <div class="modal-body">
@@ -177,7 +181,7 @@
                             <div class="modal-footer">
                                 <div class="button-set">
                                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Continue Shopping</button>
-                                    <button type="button" (click)="_addToCartByHome(products.id,products.name,products.thumbnail,products.price)" class="btn btn-outline-danger">Add To Cart</button>
+                                    <button type="button" data-dismiss="modal" (click)="_addToCartByHome(products.id,products.name,products.thumbnail,products.price)" class="btn btn-outline-danger">Add To Cart</button>
                                 </div>
                             </div>
 

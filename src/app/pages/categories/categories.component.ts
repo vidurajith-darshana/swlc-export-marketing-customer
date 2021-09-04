@@ -1,4 +1,4 @@
-import {Component, OnInit, VERSION} from '@angular/core';
+import {Component, ElementRef, OnInit, VERSION, ViewChild} from '@angular/core';
 import {Category} from '../model/category';
 import {CategoryService} from '../service/customer-web-services/category.service';
 import {ProductService} from '../service/customer-web-services/product.service';
@@ -18,6 +18,8 @@ import {Promotion} from '../model/promotion';
 export class CategoriesComponent implements OnInit {
 
     categoryName = 'Angular ' + VERSION.major;
+
+    @ViewChild('closeBtn') closeBtn :ElementRef;
 
     private categoryList: Category[];
     private promotionList: Promotion[];
@@ -161,8 +163,12 @@ export class CategoriesComponent implements OnInit {
                         list.push(item);
                     }
 
+                    this.closeModel();
                     localStorage.setItem('itemList', JSON.stringify(list));
-                    this.alertService.success(itemName + 'added to cart', this.options);
+                    this.ntService.notify('success',itemName + ' added to the cart');
+
+
+
                 } catch (e) {
                     this.alertService.warn('Something went wrong', this.options);
                 }
@@ -215,5 +221,10 @@ export class CategoriesComponent implements OnInit {
     openPromotionsPage(){
         this.router.navigate(['/promotions']);
     }
+
+    closeModel() {
+        this.closeBtn.nativeElement.click();
+    }
+
 
 }
