@@ -3,6 +3,7 @@ import {ComplainService} from "../service/customer-web-services/complain.service
 import {CustomerLoginService} from "../service/customer-web-services/customer-login.service";
 import {Router} from "@angular/router";
 import {AlertService} from "../_alert";
+import {NotifierService} from 'angular-notifier';
 
 @Component({
   selector: 'app-customer-complains',
@@ -26,6 +27,7 @@ export class CustomerComplainsComponent implements OnInit {
       private userService : CustomerLoginService,
       private router : Router,
       protected alertService: AlertService,
+      private ntService:NotifierService
   ) { }
 
   ngOnInit(): void {
@@ -43,19 +45,19 @@ export class CustomerComplainsComponent implements OnInit {
 
         this.customerComplainService.createComplain(data).subscribe((data)=>{
           if (data['success']){
-            this.alertService.success('Complain create success',this.options);
+            this.ntService.notify('success','Your review has been successfully created!');
             this.clearText();
           }else {
-            this.alertService.error('Complain create failed',this.options);
+            this.ntService.notify('error','Complain create failed');
           }
         },error => {
-          this.alertService.error("Complain create failed",this.options);
+          this.ntService.notify('error','Complain create failed');
         })
       }else {
-        this.alertService.error("Please enter complain",this.options);
+        this.ntService.notify('error','Complain create failed');
       }
     }else {
-      this.alertService.error("Please select complain type",this.options);
+      this.ntService.notify('error','Complain create failed');
     }
 
   }
