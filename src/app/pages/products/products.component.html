@@ -11,27 +11,15 @@
         <div class="col-xl-8 mb-5 mb-xl-0">
             <div class="card-columns">
                 <div *ngFor="let products of product | paginate: config" class="card">
-                    <div class="product-img">
-                        <img src={{products.thumbnail}} class="card-img-top"
-                                                  alt="products images "></div>
-                    <div class="card-body">
-                        <h2 class="card-title">{{products.name}}</h2>
-                        <h5 class="product-code">{{products.code}}</h5>
-                        <h3 class="product-price">{{products.price}}</h3>
-                        <button class="btn btn-outline-danger btn-lg" data-toggle="modal"
-                                [attr.data-target]="'#myModal'+ products.code">
-                            Add To Cart
-                        </button>
-                    </div>
                     <div class="modal" id="myModal{{products.code}}">
                         <div class="modal-dialog">
 
                             <div class="modal-content">
                                 <div class="modal-header" style="padding: 0.5rem;">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                       <span aria-hidden="true">&times;</span>
-                                     </button>
-                                   </div>
+                                    <button type="button" class="close" #closebutton data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
 
                                 <!-- Modal body -->
                                 <div class="modal-body">
@@ -58,6 +46,19 @@
 
                             </div>
                         </div>
+                    </div>
+
+                    <div class="product-img">
+                        <img src={{products.thumbnail}} class="card-img-top"
+                                                  alt="products images "></div>
+                    <div class="card-body">
+                        <h2 class="card-title">{{products.name}}</h2>
+                        <h5 class="product-code">{{products.code}}</h5>
+                        <h3 class="product-price">{{products.price}}</h3>
+                        <button class="btn btn-outline-danger btn-lg" data-toggle="modal"
+                                [attr.data-target]="'#myModal'+ products.code">
+                            Add To Cart
+                        </button>
                     </div>
 
                 </div>

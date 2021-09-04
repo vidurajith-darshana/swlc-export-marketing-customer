@@ -1,5 +1,5 @@
 /* tslint:disable:max-line-length */
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../model/product';
 import {ProductService} from '../service/customer-web-services/product.service';
@@ -11,6 +11,8 @@ import {AlertService} from '../_alert';
     styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+    @ViewChild('closebutton') closebutton;
+
     orderby: string;
     private options = {
         autoClose: false,
@@ -100,7 +102,8 @@ export class ProductsComponent implements OnInit {
                 }
 
                 localStorage.setItem('itemList', JSON.stringify(list));
-                this.alertService.success(itemName + 'added to cart', this.options);
+                this.alertService.success(itemName + ' added to cart', this.options);
+                this.removebackdrop();
             } catch (e) {
                 this.alertService.warn('Something went wrong', this.options)
             }
@@ -110,6 +113,11 @@ export class ProductsComponent implements OnInit {
     }
 
     _continueToShopping(){
+        this.removebackdrop();
         this.router.navigate(['/categories']);
+    }
+
+    removebackdrop() {
+        this.closebutton.nativeElement.click();
     }
 }
