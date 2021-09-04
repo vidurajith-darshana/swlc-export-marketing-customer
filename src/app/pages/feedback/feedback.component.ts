@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ProductService} from "../service/customer-web-services/product.service";
 import {Product} from "../model/product";
 import {AlertService} from "../_alert";
+import {NotifierService} from "angular-notifier";
+
 
 
 @Component({
@@ -11,7 +13,7 @@ import {AlertService} from "../_alert";
 })
 export class FeedbackComponent implements OnInit {
 
-    constructor(protected alertService: AlertService,private productService: ProductService) {
+    constructor(protected alertService: AlertService,private productService: ProductService,private notify:NotifierService) {
     }
 
     private productList: Product[];
@@ -64,17 +66,19 @@ export class FeedbackComponent implements OnInit {
     }
 
     requestProductDetails() {
+
         if ((this.feedbackUiModel.productCode == '' || this.feedbackUiModel.productCode == null) ||
             (this.feedbackUiModel.customerName == '' || this.feedbackUiModel.customerName == null) ||
             (this.feedbackUiModel.email == '' || this.feedbackUiModel.email == null) ||
             (this.feedbackUiModel.description == '' || this.feedbackUiModel.description == null)) {
 
-            this.alertService.warn('Check whether all fields are filled', this.options)
+            this.notify.notify('error', 'Check whether all fields are filled');
 
         } else {
             this.productService.sendFeedback(this.feedbackUiModel).subscribe((data) => {
                 if (data['success']) {
-                    this.productList = data['body'].content;
+                    this.notify.notify('success', 'Your Request was successfully added');
+                    this.clearFields()
                 }
             }, error => {
                 console.log(error.message)
@@ -82,5 +86,12 @@ export class FeedbackComponent implements OnInit {
             })
         }
 
+    }
+
+    private clearFields() {
+        this.feedbackUiModel.productName = null
+        this.feedbackUiModel.customerName = null
+        this.feedbackUiModel.email = null
+        this.feedbackUiModel.description = null
     }
 }
